@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空グラデーション（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+
+    <!-- 木の温もり（気仙杉）グラデーション -->
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#9a3412"/>
+    </linearGradient>
+
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      /* 気仙杉ルーバー：太くはっきりとした温かい木製リブ */
+      .wood-louver { stroke: #b45309; stroke-width: 4.5; stroke-linecap: round; }
+      .wood-louver-light { stroke: #f59e0b; stroke-width: 2.5; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 25 45 Q 40 30 65 36 Q 80 25 98 38 Q 112 38 118 50 Q 120 60 105 66 L 30 66 Z"/>
+    <path d="M 290 35 Q 305 22 325 28 Q 340 18 355 28 Q 368 28 372 38 Q 375 48 360 52 L 295 52 Z"/>
+  </g>
+
+  <!-- 2. 背後の緑の山並み（氷上山など） -->
+  <path d="M 0 110 Q 120 70 240 100 T 400 80 L 400 160 L 0 160 Z" fill="#86efac"/>
+  <path class="outline" fill="#22c55e" d="M 0 130 Q 150 90 280 120 T 400 105 L 400 200 L 0 200 Z"/>
+
+  <!-- 手前の緑の芝生・土手 -->
+  <path class="outline" fill="#4ade80" d="M 0 240 L 400 240 L 400 300 L 0 300 Z"/>
+  <path class="outline" fill="#16a34a" d="M 0 270 Q 200 255 400 270 L 400 300 L 0 300 Z"/>
+
+  <!-- ===============================
+       陸前高田市役所本庁舎（気仙杉の木製ルーバーを最大限に強調）
+       =============================== -->
+  <g id="city-hall" transform="translate(60, 42)">
+    <!-- ビル本体の骨格（落ち着いたダークグレー・黒） -->
+    <rect x="20" y="30" width="240" height="178" rx="4" fill="#1e293b" class="outline"/>
+
+    <!-- 窓・壁のベース（窓の青をなくし、シックなダークスモークガラス＆ダーク壁） -->
+    <rect x="24" y="38" width="232" height="142" fill="#0f172a"/>
+
+    <!-- 各階の庇・水平スラブ（落ち着いたチャコール） -->
+    <g stroke="#334155" stroke-width="4.5" stroke-linecap="round">
+      <line x1="16" y1="38" x2="264" y2="38"/>
+      <line x1="16" y1="62" x2="264" y2="62"/>
+      <line x1="16" y1="86" x2="264" y2="86"/>
+      <line x1="16" y1="110" x2="264" y2="110"/>
+      <line x1="16" y1="134" x2="264" y2="134"/>
+      <line x1="16" y1="158" x2="264" y2="158"/>
+    </g>
+
+    <!-- 各階の庇の下面に見える木製パネル天井（温かい木目） -->
+    <g fill="#d97706">
+      <rect x="20" y="40" width="240" height="4"/>
+      <rect x="20" y="64" width="240" height="4"/>
+      <rect x="20" y="88" width="240" height="4"/>
+      <rect x="20" y="112" width="240" height="4"/>
+      <rect x="20" y="136" width="240" height="4"/>
+      <rect x="20" y="160" width="240" height="4"/>
+    </g>
+
+    <!-- 左翼の木製外壁（気仙杉の無垢板パネル） -->
+    <rect x="24" y="44" width="32" height="130" fill="url(#woodGrad)" class="thin-line"/>
+    <g stroke="#78350f" stroke-width="2">
+      <line x1="32" y1="44" x2="32" y2="174"/>
+      <line x1="40" y1="44" x2="40" y2="174"/>
+      <line x1="48" y1="44" x2="48" y2="174"/>
+    </g>
+
+    <!-- ===============================
+         気仙杉の象徴：縦木製ルーバーの大群（圧倒的な木の存在感！）
+         =============================== -->
+    <g>
+      <!-- メインの木製縦ルーバー（太く温かい杉の柱列） -->
+      <!-- 2階〜6階を縦断するリブ -->
+      <!-- ルーバー影・濃い木色 -->
+      <g stroke="#9a3412" stroke-width="5" stroke-linecap="round">
+        <line x1="68" y1="64" x2="68" y2="158"/>
+        <line x1="80" y1="64" x2="80" y2="158"/>
+        <line x1="92" y1="64" x2="92" y2="158"/>
+        <line x1="104" y1="64" x2="104" y2="158"/>
+        <line x1="116" y1="64" x2="116" y2="158"/>
+        <line x1="128" y1="64" x2="128" y2="158"/>
+        <line x1="140" y1="64" x2="140" y2="158"/>
+        <line x1="152" y1="64" x2="152" y2="158"/>
+        <line x1="164" y1="64" x2="164" y2="158"/>
+        <line x1="176" y1="64" x2="176" y2="158"/>
+        <line x1="188" y1="64" x2="188" y2="158"/>
+        <line x1="200" y1="64" x2="200" y2="158"/>
+        <line x1="212" y1="64" x2="212" y2="158"/>
+        <line x1="224" y1="64" x2="224" y2="158"/>
+        <line x1="236" y1="64" x2="236" y2="158"/>
+        <line x1="248" y1="64" x2="248" y2="158"/>
+      </g>
+      <!-- ルーバー前面（鮮やかで温かい木製ハイライト） -->
+      <g stroke="#f59e0b" stroke-width="3" stroke-linecap="round">
+        <line x1="68" y1="64" x2="68" y2="158"/>
+        <line x1="80" y1="64" x2="80" y2="158"/>
+        <line x1="92" y1="64" x2="92" y2="158"/>
+        <line x1="104" y1="64" x2="104" y2="158"/>
+        <line x1="116" y1="64" x2="116" y2="158"/>
+        <line x1="128" y1="64" x2="128" y2="158"/>
+        <line x1="140" y1="64" x2="140" y2="158"/>
+        <line x1="152" y1="64" x2="152" y2="158"/>
+        <line x1="164" y1="64" x2="164" y2="158"/>
+        <line x1="176" y1="64" x2="176" y2="158"/>
+        <line x1="188" y1="64" x2="188" y2="158"/>
+        <line x1="200" y1="64" x2="200" y2="158"/>
+        <line x1="212" y1="64" x2="212" y2="158"/>
+        <line x1="224" y1="64" x2="224" y2="158"/>
+        <line x1="236" y1="64" x2="236" y2="158"/>
+        <line x1="248" y1="64" x2="248" y2="158"/>
+      </g>
+    </g>
+
+    <!-- 最上部ペントハウス（屋上階・黒と金色のサイン） -->
+    <rect x="50" y="8" width="180" height="24" rx="2" fill="#1e293b" class="outline"/>
+    <!-- 金色の市章マーク -->
+    <circle cx="75" cy="20" r="7" fill="#facc15" class="thin-line"/>
+    <!-- 「陸前高田市役所」の看板風ゴールドライン -->
+    <rect x="90" y="16" width="115" height="8" rx="2" fill="#facc15"/>
+
+    <!-- 1階エントランスのダイナミックな木製大庇（気仙杉の大きなキャノピー） -->
+    <polygon points="35,182 245,182 255,192 25,192" fill="#d97706" class="outline"/>
+    <line x1="25" y1="187" x2="255" y2="187" stroke="#fde047" stroke-width="2"/>
+    <!-- 柱・エントランスドア（シックなダークトーン） -->
+    <rect x="110" y="192" width="60" height="16" fill="#334155" class="thin-line"/>
+    <line x1="140" y1="192" x2="140" y2="208" class="thin-line"/>
+    <rect x="55" y="192" width="10" height="16" fill="#b45309"/>
+    <rect x="215" y="192" width="10" height="16" fill="#b45309"/>
+  </g>
+
+  <!-- 手前の旗ポール（市旗・国旗） -->
+  <g class="thin-line">
+    <line x1="90" y1="215" x2="90" y2="255" stroke="#94a3b8" stroke-width="2.5"/>
+    <rect x="90" y="218" width="14" height="9" fill="#ef4444"/>
+    <line x1="105" y1="212" x2="105" y2="255" stroke="#94a3b8" stroke-width="2.5"/>
+    <rect x="105" y="215" width="14" height="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <circle cx="112" cy="219.5" r="3" fill="#ef4444"/>
+  </g>
+</svg>

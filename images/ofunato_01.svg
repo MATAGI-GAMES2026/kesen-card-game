@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空グラデーション（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <linearGradient id="bayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .mid-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .fine-line { stroke: #1e293b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="mid-line">
+    <path d="M 25 45 Q 40 32 65 38 Q 80 28 95 38 Q 108 38 112 48 Q 115 58 100 64 L 30 64 Z"/>
+    <path d="M 280 35 Q 295 22 315 28 Q 330 18 345 28 Q 358 28 362 38 Q 365 48 350 52 L 285 52 Z"/>
+  </g>
+
+  <!-- 2. 背後の山並み（大船渡湾を囲む山々） -->
+  <path d="M 0 110 Q 120 70 240 100 T 400 85 L 400 160 L 0 160 Z" fill="#86efac"/>
+  <path class="outline" fill="#22c55e" d="M 0 130 Q 140 100 280 125 T 400 110 L 400 180 L 0 180 Z"/>
+
+  <!-- 山裾の民家群（小さく可愛い家々） -->
+  <g fill="#fed7aa" class="fine-line">
+    <rect x="25" y="152" width="16" height="12"/>
+    <polygon points="23,152 33,144 43,152" fill="#ef4444"/>
+    <rect x="50" y="155" width="14" height="10"/>
+    <polygon points="48,155 57,148 66,155" fill="#3b82f6"/>
+  </g>
+
+  <!-- 3. 大船渡湾の海（手前） -->
+  <rect y="195" width="400" height="105" fill="url(#bayGrad)"/>
+  <line x1="0" y1="195" x2="400" y2="195" class="mid-line" stroke="#0369a1"/>
+  <!-- 海面の白い波ライン -->
+  <g class="mid-line" stroke="#38bdf8" fill="none">
+    <path d="M 40 225 Q 70 218 100 225"/>
+    <path d="M 180 245 Q 210 238 240 245"/>
+    <path d="M 300 220 Q 330 215 360 220"/>
+    <path d="M 100 270 Q 140 262 180 270"/>
+  </g>
+
+  <!-- ==========================================
+       4. 大船渡市魚市場（新棟・象徴的な展望大屋根と緑の連続アーチ荷捌き場）
+       ========================================== -->
+  <g id="fish-market">
+    <!-- 岸壁コンクリートエプロン -->
+    <rect x="0" y="185" width="400" height="14" fill="#94a3b8" class="outline"/>
+    <!-- 岸壁の縁（黄色と黒の警戒ライン・車止め） -->
+    <rect x="0" y="183" width="400" height="4" fill="#facc15"/>
+
+    <!-- [A] 長大に連なる緑の連続アーチ屋根（波打つ荷捌き場屋根） -->
+    <!-- 荷捌き場の柱とシャッター壁 -->
+    <rect x="70" y="155" width="330" height="30" fill="#ffffff" class="outline"/>
+    <!-- 開閉シャッター列 -->
+    <g class="fine-line" fill="#e2e8f0">
+      <rect x="75" y="165" width="16" height="18"/>
+      <rect x="98" y="165" width="16" height="18"/>
+      <rect x="121" y="165" width="16" height="18"/>
+      <rect x="144" y="165" width="16" height="18"/>
+      <rect x="167" y="165" width="16" height="18"/>
+      <rect x="190" y="165" width="16" height="18"/>
+      <rect x="213" y="165" width="16" height="18"/>
+      <rect x="236" y="165" width="16" height="18"/>
+      <rect x="259" y="165" width="16" height="18"/>
+      <rect x="282" y="165" width="16" height="18"/>
+      <rect x="305" y="165" width="16" height="18"/>
+      <rect x="328" y="165" width="16" height="18"/>
+      <rect x="351" y="165" width="16" height="18"/>
+      <rect x="374" y="165" width="16" height="18"/>
+    </g>
+
+    <!-- 緑の連続アーチ屋根（連続するヴォールト屋根） -->
+    <g class="outline" fill="#22c55e">
+      <path d="
+        M 70 156 
+        Q 81 146 92 156 
+        Q 103 146 114 156 
+        Q 125 146 136 156 
+        Q 147 146 158 156 
+        Q 169 146 180 156 
+        Q 191 146 202 156 
+        Q 213 146 224 156 
+        Q 235 146 246 156 
+        Q 257 146 268 156 
+        Q 279 146 290 156 
+        Q 301 146 312 156 
+        Q 323 146 334 156 
+        Q 345 146 356 156 
+        Q 367 146 378 156 
+        Q 389 146 400 156 
+        L 400 160 L 70 160 Z
+      "/>
+    </g>
+
+    <!-- [B] メイン管理・展望棟（2階・3階のモダンなガラス建築） -->
+    <!-- 左翼のアーチ状曲面屋根棟 -->
+    <path d="M 90 155 L 90 125 Q 130 115 170 120 L 170 155 Z" fill="#ffffff" class="outline"/>
+    <rect x="95" y="128" width="70" height="18" fill="#38bdf8" class="fine-line"/>
+
+    <!-- 中央のガラス張り展望デッキフロア -->
+    <rect x="155" y="120" width="95" height="35" fill="#ffffff" class="outline"/>
+    <rect x="160" y="124" width="85" height="24" fill="#38bdf8" class="fine-line"/>
+    <!-- ガラスのグリッド桟 -->
+    <g stroke="#ffffff" stroke-width="2">
+      <line x1="180" y1="124" x2="180" y2="148"/>
+      <line x1="202" y1="124" x2="202" y2="148"/>
+      <line x1="225" y1="124" x2="225" y2="148"/>
+    </g>
+
+    <!-- [C] 象徴的な「跳ね上がる白い大屋根」（鳥の翼のような展望大屋根！） -->
+    <!-- V字の白い支柱トラス -->
+    <g stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" class="outline">
+      <line x1="168" y1="120" x2="155" y2="85"/>
+      <line x1="180" y1="120" x2="195" y2="83"/>
+      <line x1="220" y1="120" x2="210" y2="83"/>
+      <line x1="235" y1="120" x2="250" y2="85"/>
+    </g>
+
+    <!-- 跳ね上がる白い大屋根本体（翼のシルエット） -->
+    <g class="outline" fill="#ffffff">
+      <path d="
+        M 140 92 
+        Q 200 102 265 92 
+        L 272 82 
+        Q 200 70 148 76 
+        Z
+      "/>
+    </g>
+    <!-- 大屋根のルーバー・骨組みライン -->
+    <g class="fine-line" stroke="#cbd5e1">
+      <line x1="165" y1="78" x2="162" y2="94"/>
+      <line x1="185" y1="76" x2="183" y2="97"/>
+      <line x1="205" y1="75" x2="205" y2="98"/>
+      <line x1="225" y1="76" x2="228" y2="96"/>
+      <line x1="245" y1="78" x2="250" y2="93"/>
+    </g>
+
+    <!-- 1階前面の白いエントランス庇 -->
+    <path d="M 160 152 Q 200 148 240 152 L 245 162 L 155 162 Z" fill="#ffffff" class="outline"/>
+  </g>
+</svg>

@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <!-- 気仙川の美しい清流グラデーション -->
+    <linearGradient id="riverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="40%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .rod-line { stroke: #1e293b; stroke-width: 2.5; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 25 45 Q 40 30 65 36 Q 80 25 98 38 Q 112 38 118 50 Q 120 60 105 66 L 30 66 Z"/>
+    <path d="M 270 35 Q 285 22 305 28 Q 320 18 335 28 Q 348 28 352 38 Q 355 48 340 52 L 275 52 Z"/>
+  </g>
+
+  <!-- 2. 横田の深緑の山並み（左奥・右奥） -->
+  <path d="M 0 100 Q 120 60 220 85 T 400 70 L 400 135 L 0 135 Z" fill="#86efac"/>
+  <path class="outline" fill="#22c55e" d="M 0 115 Q 100 80 200 105 T 400 90 L 400 150 L 0 150 Z"/>
+
+  <!-- 左岸の豊かな杉の木立ち・民家のある里山 -->
+  <path class="outline" fill="#15803d" d="M 0 130 Q 80 110 160 145 L 0 190 Z"/>
+  <!-- 三角の杉の木（左側） -->
+  <g class="outline" transform="translate(20, 110)">
+    <polygon points="15,0 0,35 30,35" fill="#166534"/>
+    <polygon points="35,5 20,40 50,40" fill="#15803d"/>
+    <polygon points="55,0 40,35 70,35" fill="#166534"/>
+  </g>
+
+  <!-- 3. 清流・気仙川（蛇行して手前にゆったりと広がる川面） -->
+  <!-- 対岸・河原の緑地 -->
+  <path class="outline" fill="#86efac" d="M 120 135 Q 260 120 400 135 L 400 170 L 120 170 Z"/>
+  <!-- 川の流れ本体 -->
+  <path class="outline" fill="url(#riverGrad)" d="
+    M 220 135 
+    Q 280 138 340 142 
+    L 400 155 
+    L 400 300 
+    L 0 300 
+    L 0 180 
+    Q 120 170 200 155 
+    Z
+  "/>
+
+  <!-- 手前右岸・左岸の草むら（川辺の葦や草） -->
+  <path class="outline" fill="#4ade80" d="M 0 200 Q 80 185 140 215 L 0 260 Z"/>
+  <path class="outline" fill="#4ade80" d="M 280 300 Q 340 230 400 240 L 400 300 Z"/>
+
+  <!-- 川面の優しい波ライン -->
+  <g class="thin-line" stroke="#ffffff" fill="none">
+    <path d="M 80 230 Q 110 225 140 230"/>
+    <path d="M 180 200 Q 210 195 240 200"/>
+    <path d="M 160 260 Q 200 252 240 260"/>
+    <path d="M 280 180 Q 310 175 340 180"/>
+  </g>
+
+  <!-- 4. 川の中に立ち込む鮎釣り人（アユの友釣り） -->
+  <!-- [メイン釣り人（中央手前）] -->
+  <g id="fisherman" class="outline" transform="translate(195, 170)">
+    <!-- 川の足元の水紋 -->
+    <ellipse cx="15" cy="65" rx="18" ry="6" fill="#38bdf8" stroke="#ffffff" class="thin-line"/>
+
+    <!-- ウェーダー（胴長・ダークグレー） -->
+    <path d="M 8 38 L 8 62 L 14 62 L 14 48 L 16 48 L 16 62 L 22 62 L 22 38 Z" fill="#334155"/>
+
+    <!-- 上着（フィッシングベスト・ベージュ） -->
+    <rect x="6" y="24" width="18" height="16" rx="3" fill="#fed7aa"/>
+    <!-- フィッシングベストのポケット -->
+    <rect x="8" y="27" width="5" height="6" fill="#ca8a04" class="thin-line"/>
+    <rect x="17" y="27" width="5" height="6" fill="#ca8a04" class="thin-line"/>
+
+    <!-- 頭・フィッシングハット（丸いつば広帽子） -->
+    <circle cx="15" cy="16" r="6" fill="#fed7aa"/>
+    <path d="M 4 17 Q 15 11 26 17 L 24 13 Q 15 8 6 13 Z" fill="#fde047"/>
+    <ellipse cx="15" cy="17" rx="14" ry="4" fill="#fde047"/>
+
+    <!-- 腕と釣り竿（細く長い鮎竿） -->
+    <line x1="10" y1="28" x2="2" y2="35" class="thin-line" stroke="#fed7aa"/>
+    <line x1="20" y1="28" x2="24" y2="35" class="thin-line" stroke="#fed7aa"/>
+
+    <!-- 超ロングな鮎竿（友釣り用の細長い竿） -->
+    <line x1="0" y1="36" x2="-85" y2="-45" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-85" y1="-45" x2="-140" y2="-100" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- 釣り糸（ライン）と掛かった元気な鮎 -->
+    <path d="M -140 -100 Q -100 -20 -60 50" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+
+    <!-- 水面からピチピチ跳ねる鮎（アユ） -->
+    <g transform="translate(-65, 45) rotate(-35)">
+      <ellipse cx="10" cy="5" rx="14" ry="5" fill="#e2e8f0"/>
+      <polygon points="22,5 28,1 26,5 28,9" fill="#94a3b8"/>
+      <circle cx="4" cy="4" r="1.5" fill="#1e293b"/>
+      <ellipse cx="8" cy="4.5" rx="2" ry="3" fill="#facc15"/>
+      <!-- 水しぶき -->
+      <circle cx="-2" cy="2" r="2" fill="#ffffff" stroke="#1e293b" class="thin-line"/>
+    </g>
+  </g>
+
+  <!-- 奥にも小さく見える釣り人（遠景） -->
+  <g class="outline" transform="translate(320, 150) scale(0.45)">
+    <ellipse cx="15" cy="65" rx="15" ry="5" fill="#38bdf8" stroke="#ffffff" class="thin-line"/>
+    <path d="M 8 38 L 8 62 L 22 62 L 22 38 Z" fill="#334155"/>
+    <rect x="6" y="24" width="18" height="16" fill="#ef4444"/>
+    <circle cx="15" cy="15" r="6" fill="#fed7aa"/>
+    <ellipse cx="15" cy="16" rx="12" ry="4" fill="#fde047"/>
+    <!-- 竿 -->
+    <line x1="5" y1="35" x2="-60" y2="-40" stroke="#1e293b" stroke-width="3"/>
+  </g>
+</svg>

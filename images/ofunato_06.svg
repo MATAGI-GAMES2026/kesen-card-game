@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空グラデーション（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+
+    <!-- ダム湖（五葉湖）エメラルドグリーン水面 -->
+    <linearGradient id="lakeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .mid-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .fine-line { stroke: #1e293b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="mid-line">
+    <path d="M 25 45 Q 40 32 65 38 Q 80 28 95 38 Q 108 38 112 48 Q 115 58 100 64 L 30 64 Z"/>
+    <path d="M 280 35 Q 295 22 315 28 Q 330 18 345 28 Q 358 28 362 38 Q 365 48 350 52 L 285 52 Z"/>
+  </g>
+
+  <!-- 2. 名峰・五葉山（雄大にそびえる山容・緑深い連峰） -->
+  <path d="M 0 130 Q 200 45 400 120 L 400 170 L 0 170 Z" fill="#60a5fa"/>
+  <path class="outline" fill="#22c55e" d="M 0 145 Q 200 60 400 135 L 400 190 L 0 190 Z"/>
+  <path class="outline" fill="#15803d" d="M 0 165 Q 180 110 400 150 L 400 210 L 0 210 Z"/>
+
+  <!-- 3. ダム湖「五葉湖」（貯水池・エメラルドグリーンの美しい湖） -->
+  <polygon points="0,175 400,165 400,215 0,215" fill="url(#lakeGrad)"/>
+  <line x1="0" y1="175" x2="400" y2="165" class="mid-line" stroke="#0f766e"/>
+
+  <!-- ==========================================
+       4. 鷹生ダム（重力式コンクリートダム・コンクリート堤体と放流）
+       ========================================== -->
+  <g id="takou-dam">
+    <!-- ダム堤体本体（重厚なコンクリート斜面・ライトグレー） -->
+    <path class="outline" fill="#cbd5e1" d="
+      M 40 195 
+      L 155 195 
+      L 135 300 
+      L 265 300 
+      L 245 195 
+      L 360 195 
+      L 375 225 
+      L 290 300 
+      L 110 300 
+      L 25 225 
+      Z
+    "/>
+    <!-- 堤体コンクリートの陰影面 -->
+    <path fill="#94a3b8" d="M 135 300 L 155 195 L 245 195 L 265 300 Z"/>
+
+    <!-- ダム天端道路・欄干（ダム頂上の道路と手すり） -->
+    <g class="outline" fill="#e2e8f0">
+      <rect x="30" y="185" width="340" height="12" rx="2"/>
+      <line x1="30" y1="188" x2="370" y2="188" class="fine-line" stroke="#64748b"/>
+    </g>
+
+    <!-- 非常用洪水吐き・ゲートピア（中央の放流ゲート塔） -->
+    <g class="outline" fill="#f8fafc">
+      <rect x="155" y="172" width="16" height="24" rx="2"/>
+      <rect x="192" y="172" width="16" height="24" rx="2"/>
+      <rect x="229" y="172" width="16" height="24" rx="2"/>
+    </g>
+
+    <!-- クレスト放流（勢いよく滑り落ちる白い水流） -->
+    <g class="outline">
+      <path fill="#ffffff" d="
+        M 172 195 
+        L 165 270 
+        L 235 270 
+        L 228 195 
+        Z
+      "/>
+      <line x1="185" y1="200" x2="180" y2="265" class="mid-line" stroke="#38bdf8"/>
+      <line x1="200" y1="198" x2="200" y2="265" class="mid-line" stroke="#38bdf8"/>
+      <line x1="215" y1="200" x2="220" y2="265" class="mid-line" stroke="#38bdf8"/>
+    </g>
+
+    <!-- 減勢工・副ダム（放流された水が泡立つプール・白い水しぶき） -->
+    <path class="outline" fill="#0284c7" d="M 110 270 L 290 270 L 280 300 L 120 300 Z"/>
+    <!-- 白い泡・水しぶきクラスタ -->
+    <g fill="#ffffff" class="mid-line">
+      <ellipse cx="170" cy="275" rx="18" ry="8"/>
+      <ellipse cx="200" cy="272" rx="24" ry="10"/>
+      <ellipse cx="230" cy="275" rx="18" ry="8"/>
+    </g>
+
+    <!-- 左右の山腹斜面（ダムの両岸を支える緑の岩山） -->
+    <path class="outline" fill="#15803d" d="M 0 190 L 60 190 L 0 280 Z"/>
+    <path class="outline" fill="#15803d" d="M 400 190 L 340 190 L 400 280 Z"/>
+  </g>
+</svg>

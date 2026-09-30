@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空グラデーション（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+
+    <!-- グラウンド（土の校庭）グラデーション -->
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="40%" stop-color="#fed7aa"/>
+      <stop offset="100%" stop-color="#fdba74"/>
+    </linearGradient>
+
+    <!-- 看板のボルドー・ワインレッドグラデーション -->
+    <linearGradient id="signboardGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#701a28"/>
+      <stop offset="50%" stop-color="#881337"/>
+      <stop offset="100%" stop-color="#9f1239"/>
+    </linearGradient>
+
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .mid-line { stroke: #1e293b; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 澄んだ青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 40 35 Q 55 22 75 28 Q 90 18 110 28 Q 120 28 125 38 Q 128 48 112 50 L 45 50 Z"/>
+    <path d="M 170 25 Q 182 15 200 20 Q 212 12 225 20 Q 232 20 236 28 Q 238 35 225 38 L 175 38 Z"/>
+  </g>
+
+  <!-- 2. 校舎背後にそびえる雄大な山並み（気仙杉の深緑林） -->
+  <!-- 遠景の山 -->
+  <path d="M 0 100 Q 140 50 250 20 T 400 60 L 400 180 L 0 180 Z" fill="#86efac"/>
+  <!-- 中景の主峰（急峻にそびえる気仙杉の山） -->
+  <path class="outline" fill="#166534" d="
+    M -10 160 
+    L 30 110 
+    Q 120 70 200 50 
+    L 280 18 
+    Q 340 45 410 75 
+    L 410 190 
+    L -10 190 
+    Z
+  "/>
+  <!-- 山肌の濃淡・杉林の重なり -->
+  <path fill="#14532d" d="
+    M 60 160 
+    Q 150 100 220 75 
+    L 280 18 
+    Q 340 45 410 75 
+    L 410 185 
+    L 60 185 
+    Z
+  "/>
+  <!-- 杉の樹木シルエット（山肌のテクスチャ） -->
+  <g fill="#166534" class="thin-line">
+    <polygon points="65,105 58,125 72,125"/>
+    <polygon points="110,85 103,105 117,105"/>
+    <polygon points="160,70 153,90 167,90"/>
+    <polygon points="210,55 203,75 217,75"/>
+    <polygon points="260,35 253,55 267,55"/>
+    <polygon points="310,48 303,68 317,68"/>
+  </g>
+
+
+  <!-- 3. 広大な校庭グラウンド（手前） -->
+  <path class="outline" fill="url(#groundGrad)" d="M -10 185 L 410 185 L 410 310 L -10 310 Z"/>
+  <!-- グラウンドのトラック白線（カーブライン） -->
+  <path d="M 10 245 Q 160 215 310 235" fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.6"/>
+  <path d="M 20 275 Q 170 245 320 265" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+
+
+  <!-- 4. 岩手県立住田高等学校 校舎群 -->
+
+  <!-- 校舎の芝生土台・植え込み -->
+  <rect x="25" y="178" width="280" height="10" fill="#22c55e" class="thin-line" rx="2"/>
+
+  <!-- [右棟：2階建て校舎＆青い屋根の棟] -->
+  <g class="outline">
+    <!-- 2階建て校舎本体（ホワイト） -->
+    <rect x="145" y="142" width="155" height="42" fill="#f8fafc"/>
+    <!-- 右端の青い屋根（住田高校の特徴的なシアンブルー屋根） -->
+    <polygon points="225,142 220,135 305,133 300,142" fill="#0284c7"/>
+    <!-- 中央棟のシルバーグレー屋根 -->
+    <polygon points="142,142 145,138 225,135 225,142" fill="#cbd5e1"/>
+    
+    <!-- 2階窓列 -->
+    <g fill="#38bdf8" class="thin-line">
+      <rect x="152" y="146" width="12" height="10"/>
+      <rect x="168" y="146" width="12" height="10"/>
+      <rect x="184" y="146" width="12" height="10"/>
+      <rect x="200" y="146" width="12" height="10"/>
+      <rect x="232" y="146" width="14" height="10"/>
+      <rect x="252" y="146" width="14" height="10"/>
+      <rect x="272" y="146" width="14" height="10"/>
+    </g>
+    <!-- 1階窓列 -->
+    <g fill="#38bdf8" class="thin-line">
+      <rect x="152" y="164" width="12" height="11"/>
+      <rect x="168" y="164" width="12" height="11"/>
+      <rect x="184" y="164" width="12" height="11"/>
+      <rect x="200" y="164" width="12" height="11"/>
+      <rect x="232" y="164" width="14" height="11"/>
+      <rect x="252" y="164" width="14" height="11"/>
+      <rect x="272" y="164" width="14" height="11"/>
+    </g>
+    <!-- 階間セパレータ白帯 -->
+    <line x1="145" y1="160" x2="300" y2="160" class="mid-line" stroke="#94a3b8"/>
+  </g>
+
+  <!-- [左棟：堂々とした3階建て本校舎] -->
+  <g class="outline">
+    <!-- 3階建て校舎本体 -->
+    <rect x="30" y="126" width="120" height="58" fill="#f8fafc"/>
+    <!-- 三角切妻・シルバー屋根 -->
+    <polygon points="28,126 32,120 152,120 150,126" fill="#cbd5e1"/>
+    <!-- 3階窓列 -->
+    <g fill="#38bdf8" class="thin-line">
+      <rect x="38" y="130" width="10" height="8"/>
+      <rect x="52" y="130" width="10" height="8"/>
+      <rect x="66" y="130" width="10" height="8"/>
+      <rect x="80" y="130" width="10" height="8"/>
+      <rect x="94" y="130" width="10" height="8"/>
+      <rect x="108" y="130" width="10" height="8"/>
+      <rect x="122" y="130" width="10" height="8"/>
+      <rect x="136" y="130" width="10" height="8"/>
+    </g>
+    <!-- 2階窓列 -->
+    <g fill="#38bdf8" class="thin-line">
+      <rect x="38" y="146" width="10" height="8"/>
+      <rect x="52" y="146" width="10" height="8"/>
+      <rect x="66" y="146" width="10" height="8"/>
+      <rect x="80" y="146" width="10" height="8"/>
+      <rect x="94" y="146" width="10" height="8"/>
+      <rect x="108" y="146" width="10" height="8"/>
+      <rect x="122" y="146" width="10" height="8"/>
+      <rect x="136" y="146" width="10" height="8"/>
+    </g>
+    <!-- 1階窓列・昇降口 -->
+    <g fill="#38bdf8" class="thin-line">
+      <rect x="38" y="162" width="10" height="9"/>
+      <rect x="52" y="162" width="10" height="9"/>
+      <rect x="66" y="162" width="10" height="9"/>
+      <rect x="80" y="162" width="10" height="9"/>
+      <rect x="94" y="162" width="10" height="9"/>
+      <rect x="108" y="162" width="10" height="9"/>
+      <rect x="122" y="162" width="10" height="9"/>
+      <rect x="136" y="162" width="10" height="9"/>
+    </g>
+    <!-- 各階ベランダ・水平白ルーバー -->
+    <line x1="30" y1="142" x2="150" y2="142" class="mid-line" stroke="#94a3b8"/>
+    <line x1="30" y1="158" x2="150" y2="158" class="mid-line" stroke="#94a3b8"/>
+  </g>
+
+  <!-- 校舎前の桜の木（写真にある中庭の桜 🌸） -->
+  <g class="outline" transform="translate(138, 160)">
+    <rect x="5" y="12" width="4" height="15" fill="#78350f"/>
+    <circle cx="7" cy="10" r="10" fill="#f472b6"/>
+    <circle cx="2" cy="7" r="8" fill="#fbcfe8"/>
+    <circle cx="12" cy="7" r="8" fill="#fbcfe8"/>
+    <circle cx="7" cy="2" r="7" fill="#f472b6"/>
+  </g>
+
+
+  <!-- 5. 手前右側の象徴的な校名看板（写真右のワインレッド看板柱） -->
+  <g class="outline" transform="translate(315, 0)">
+    <!-- 看板柱の影 -->
+    <rect x="-4" y="0" width="84" height="310" fill="#0f172a" opacity="0.3" stroke="none"/>
+    <!-- 看板柱本体 -->
+    <rect x="0" y="0" width="80" height="310" fill="url(#signboardGrad)"/>
+    
+    <!-- 看板上部白エリア（校章枠） -->
+    <rect x="0" y="0" width="80" height="46" fill="#f8fafc"/>
+    <!-- 住田高校の校章シンボル（六角形＆高マーク） -->
+    <g class="thin-line" stroke="#881337" fill="none">
+      <polygon points="40,8 54,16 54,32 40,40 26,32 26,16" stroke-width="2"/>
+      <circle cx="40" cy="24" r="8" stroke-width="1.5"/>
+    </g>
+    <text x="40" y="28" text-anchor="middle" font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-weight="900" font-size="10" fill="#881337">高</text>
+
+    <!-- 看板の仕切り線 -->
+    <line x1="0" y1="46" x2="80" y2="46" stroke="#1e293b" stroke-width="2.5"/>
+
+    <!-- 校訓（右側の細い縦書き）: 「自主 創造 至誠」 -->
+    <g font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-weight="800" font-size="9" fill="#ffffff" text-anchor="middle">
+      <text x="66" y="68">自</text>
+      <text x="66" y="80">主</text>
+      <text x="66" y="104">創</text>
+      <text x="66" y="116">造</text>
+      <text x="66" y="140">至</text>
+      <text x="66" y="152">誠</text>
+    </g>
+
+    <!-- メイン校名（中央の太い縦書き）: 「岩手県立 住田高等学校」 -->
+    <g font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-weight="900" fill="#ffffff" text-anchor="middle">
+      <text x="32" y="70" font-size="9" letter-spacing="1">岩手県立</text>
+      
+      <!-- 「住田高校」堂々たる大文字縦書き -->
+      <text x="32" y="98" font-size="16">住</text>
+      <text x="32" y="122" font-size="16">田</text>
+      <text x="32" y="146" font-size="16">高</text>
+      <text x="32" y="170" font-size="16">等</text>
+      <text x="32" y="194" font-size="16">学</text>
+      <text x="32" y="218" font-size="16">校</text>
+    </g>
+  </g>
+
+
+  <!-- 6. 手前左側の桜の枝（写真左側の桜の構図を取り入れたアクセント） -->
+  <g class="outline" transform="translate(-10, 180)">
+    <!-- 桜の小枝 -->
+    <path d="M 0 40 Q 25 35 45 20" fill="none" stroke="#78350f" stroke-width="4"/>
+    <path d="M 25 35 Q 35 45 50 42" fill="none" stroke="#78350f" stroke-width="3"/>
+    <!-- 桜の花びらクラスタ -->
+    <g fill="#fbcfe8" stroke="#f472b6" stroke-width="1.5">
+      <circle cx="45" cy="18" r="7"/>
+      <circle cx="38" cy="14" r="6"/>
+      <circle cx="52" cy="15" r="6"/>
+      <circle cx="48" cy="26" r="6"/>
+      <circle cx="40" cy="24" r="6"/>
+      <circle cx="50" cy="42" r="7"/>
+      <circle cx="42" cy="45" r="6"/>
+      <circle cx="58" cy="42" r="6"/>
+    </g>
+    <!-- 花芯 -->
+    <circle cx="45" cy="19" r="2" fill="#ef4444" stroke="none"/>
+    <circle cx="50" cy="43" r="2" fill="#ef4444" stroke="none"/>
+  </g>
+
+</svg>

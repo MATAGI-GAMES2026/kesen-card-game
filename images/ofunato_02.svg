@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空グラデーション（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .mid-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .fine-line { stroke: #1e293b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="mid-line">
+    <path d="M 240 50 Q 255 38 275 42 Q 290 32 305 42 Q 318 42 322 52 Q 325 62 310 66 L 245 66 Z"/>
+  </g>
+
+  <!-- 2. 背後の山並み -->
+  <path d="M 0 115 Q 120 75 240 105 T 400 90 L 400 160 L 0 160 Z" fill="#86efac"/>
+  <path class="outline" fill="#22c55e" d="M 0 135 Q 140 105 280 130 T 400 115 L 400 180 L 0 180 Z"/>
+
+  <!-- 手前の駅前ロータリー広場・アスファルト -->
+  <path class="outline" fill="#cbd5e1" d="M 0 215 L 400 215 L 400 300 L 0 300 Z"/>
+  <path fill="#94a3b8" d="M 0 240 Q 200 230 400 240 L 400 300 L 0 300 Z"/>
+
+  <!-- ==========================================
+       3. 盛駅（左：三陸鉄道盛駅、右：JR盛駅）
+       ========================================== -->
+
+  <!-- [左側] 三陸鉄道 盛駅舎（白壁と鮮やかなオレンジ色のパラペット） -->
+  <g id="santetsu-station" transform="translate(15, 110)">
+    <!-- 駅舎本体（白壁） -->
+    <rect x="15" y="40" width="135" height="65" fill="#f8fafc" class="outline"/>
+
+    <!-- オレンジ色の特徴的なパラペット（屋根の看板部分） -->
+    <rect x="15" y="30" width="135" height="24" fill="#ea580c" class="outline"/>
+    <!-- 「三陸鉄道 盛 駅」文字（白） -->
+    <g fill="#ffffff" font-family="'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif" font-weight="900" text-anchor="middle">
+      <text x="50" y="46" font-size="7">三陸鉄道</text>
+      <text x="85" y="48" font-size="12">盛</text>
+      <text x="110" y="48" font-size="12">駅</text>
+    </g>
+
+    <!-- 入口ドア・窓ガラス -->
+    <rect x="80" y="60" width="30" height="45" fill="#38bdf8" class="fine-line"/>
+    <line x1="95" y1="60" x2="95" y2="105" class="fine-line" stroke="#ffffff"/>
+    <rect x="115" y="65" width="25" height="25" fill="#38bdf8" class="fine-line"/>
+
+    <!-- 駅前の自動販売機（青・白・赤の並び） -->
+    <rect x="35" y="65" width="14" height="28" rx="2" fill="#2563eb" class="fine-line"/>
+    <rect x="52" y="65" width="14" height="28" rx="2" fill="#ef4444" class="fine-line"/>
+  </g>
+
+  <!-- [右側] JR 盛駅舎（黒い切妻屋根と木製パーゴラ・ルーバー庇） -->
+  <g id="jr-station" transform="translate(170, 75)">
+    <!-- 駅舎壁面（温かみのあるブラウン・ベージュ） -->
+    <rect x="15" y="65" width="200" height="75" fill="#d6d3d1" class="outline"/>
+
+    <!-- 黒い切妻屋根（重厚なダークチャコール屋根） -->
+    <polygon points="5,65 225,65 215,20 15,20" fill="#292524" class="outline"/>
+    <!-- 破風板・屋根段差ライン -->
+    <line x1="10" y1="63" x2="220" y2="63" stroke="#44403c" stroke-width="4"/>
+
+    <!-- 緑の「JR 盛駅」看板（写真そのまま！） -->
+    <g class="fine-line" transform="translate(115, 30)">
+      <rect x="0" y="0" width="55" height="18" rx="2" fill="#15803d"/>
+      <rect x="2" y="2" width="51" height="14" rx="1" fill="#ffffff"/>
+      <!-- JR緑ロゴ＆盛駅文字 -->
+      <text x="10" y="13" font-size="9" font-weight="900" fill="#15803d" font-family="sans-serif">JR</text>
+      <text x="32" y="13" font-size="9" font-weight="900" fill="#1e293b" font-family="'Hiragino Kaku Gothic ProN', sans-serif">盛駅</text>
+    </g>
+
+    <!-- 木製パーゴラ・ルーバーの庇（木組みの格子庇・茶色） -->
+    <!-- 庇1（左のガラス前） -->
+    <g transform="translate(20, 80)">
+      <polygon points="0,20 65,20 55,0 -5,0" fill="#b45309" class="outline"/>
+      <!-- 木製ルーバー垂木列 -->
+      <g stroke="#78350f" stroke-width="3">
+        <line x1="5" y1="0" x2="10" y2="20"/>
+        <line x1="15" y1="0" x2="20" y2="20"/>
+        <line x1="25" y1="0" x2="30" y2="20"/>
+        <line x1="35" y1="0" x2="40" y2="20"/>
+        <line x1="45" y1="0" x2="50" y2="20"/>
+        <line x1="55" y1="0" x2="60" y2="20"/>
+      </g>
+    </g>
+    <!-- 庇2（右の出入口前） -->
+    <g transform="translate(95, 80)">
+      <polygon points="0,20 85,20 75,0 -5,0" fill="#b45309" class="outline"/>
+      <g stroke="#78350f" stroke-width="3">
+        <line x1="5" y1="0" x2="10" y2="20"/>
+        <line x1="15" y1="0" x2="20" y2="20"/>
+        <line x1="25" y1="0" x2="30" y2="20"/>
+        <line x1="35" y1="0" x2="40" y2="20"/>
+        <line x1="45" y1="0" x2="50" y2="20"/>
+        <line x1="55" y1="0" x2="60" y2="20"/>
+        <line x1="65" y1="0" x2="70" y2="20"/>
+        <line x1="75" y1="0" x2="80" y2="20"/>
+      </g>
+    </g>
+
+    <!-- 1階のガラス窓と自動ドア -->
+    <rect x="35" y="100" width="40" height="40" fill="#38bdf8" class="fine-line"/>
+    <rect x="110" y="100" width="55" height="40" fill="#38bdf8" class="fine-line"/>
+    <line x1="137" y1="100" x2="137" y2="140" class="fine-line" stroke="#ffffff"/>
+  </g>
+
+  <!-- 駅前街灯ポール -->
+  <path d="M 155 215 L 155 110 Q 155 95 145 92" fill="none" stroke="#64748b" stroke-width="3.5" class="outline"/>
+  <circle cx="145" cy="92" r="4.5" fill="#fde047"/>
+</svg>

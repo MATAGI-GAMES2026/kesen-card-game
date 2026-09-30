@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <style>
+      .outline { stroke: #2d3748; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #2d3748; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 空・背景 -->
+  <rect width="400" height="300" fill="#f8fafc"/>
+  
+  <!-- 遠くの山・雲 -->
+  <path d="M 0 170 Q 70 145 150 165 T 320 155 Q 360 150 400 160 L 400 200 L 0 200 Z" fill="#c7d2fe"/>
+  
+  <!-- 雲 -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 40 70 Q 55 50 80 60 Q 100 45 120 60 Q 140 60 145 75 Q 150 90 130 95 L 45 95 Q 30 85 40 70 Z"/>
+    <path d="M 280 50 Q 295 35 315 42 Q 330 30 345 42 Q 360 42 365 55 Q 370 65 355 70 L 285 70 Q 275 62 280 50 Z"/>
+  </g>
+
+  <!-- 海 -->
+  <rect y="175" width="400" height="125" fill="#bae6fd"/>
+  
+  <!-- 海の波（シンプル・優しい） -->
+  <g fill="none" class="thin-line" stroke="#38bdf8">
+    <path d="M 20 200 Q 35 195 50 200 T 80 200"/>
+    <path d="M 330 205 Q 345 200 360 205 T 390 205"/>
+    <path d="M 15 260 Q 35 252 55 260 T 95 260"/>
+    <path d="M 310 270 Q 330 262 350 270 T 385 270"/>
+  </g>
+
+  <!-- 穴通磯（メインの奇岩） -->
+  <g>
+    <!-- メイン岩体 -->
+    <path class="outline" fill="#d6d3d1" d="
+      M 60 270 
+      C 65 200, 75 130, 110 115 
+      C 150 100, 250 95, 290 115 
+      C 325 130, 335 200, 340 270
+      C 320 275, 295 270, 275 270
+      C 270 210, 260 190, 245 190
+      C 230 190, 220 210, 215 270
+      C 195 272, 175 270, 160 270
+      C 155 205, 145 185, 130 185
+      C 115 185, 105 205, 100 270
+      Z
+    "/>
+
+    <!-- 岩の質感・陰影パーツ（優しいトーン） -->
+    <path fill="#a8a29e" d="
+      M 75 210 Q 90 150 115 125 Q 95 180 85 240 Z
+    "/>
+    <path fill="#a8a29e" d="
+      M 325 210 Q 310 150 285 125 Q 305 180 315 240 Z
+    "/>
+
+    <!-- 洞門（穴）の中の海と向こう側の景色 -->
+    <!-- 穴1（左） -->
+    <path class="outline" fill="#7dd3fc" d="
+      M 102 270
+      C 105 210, 115 190, 130 190
+      C 145 190, 155 210, 158 270
+      Z
+    "/>
+    <!-- 穴2（右） -->
+    <path class="outline" fill="#7dd3fc" d="
+      M 217 270
+      C 220 215, 230 195, 245 195
+      C 260 195, 270 215, 273 270
+      Z
+    "/>
+    
+    <!-- 穴の中の遠景水平線 -->
+    <line x1="102" y1="235" x2="158" y2="235" class="thin-line" stroke="#38bdf8"/>
+    <line x1="217" y1="235" x2="273" y2="235" class="thin-line" stroke="#38bdf8"/>
+
+    <!-- 岩の表面の線（イラスト調） -->
+    <path class="thin-line" fill="none" d="M 150 120 L 165 155 M 240 120 L 225 155 M 195 105 L 195 140"/>
+  </g>
+
+  <!-- 岩の上の可愛い松の木（左・中央・右） -->
+  <g class="outline">
+    <!-- 松1（左） -->
+    <path fill="#78350f" d="M 125 115 L 128 95 L 133 95 L 131 115 Z"/>
+    <ellipse cx="130" cy="90" rx="20" ry="12" fill="#4ade80"/>
+    <ellipse cx="120" cy="80" rx="16" ry="10" fill="#22c55e"/>
+
+    <!-- 松2（中央上） -->
+    <path fill="#78350f" d="M 197 105 L 197 78 L 203 78 L 203 105 Z"/>
+    <ellipse cx="200" cy="72" rx="28" ry="15" fill="#4ade80"/>
+    <ellipse cx="190" cy="58" rx="22" ry="12" fill="#22c55e"/>
+    <ellipse cx="210" cy="55" rx="18" ry="10" fill="#16a34a"/>
+
+    <!-- 松3（右） -->
+    <path fill="#78350f" d="M 270 118 L 268 95 L 273 95 L 276 118 Z"/>
+    <ellipse cx="272" cy="88" rx="22" ry="13" fill="#4ade80"/>
+    <ellipse cx="280" cy="76" rx="17" ry="11" fill="#22c55e"/>
+  </g>
+
+  <!-- 岩の根元の白い波しぶき（可愛いデフォルメ） -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 50 275 Q 60 260 75 270 Q 85 258 100 272 Q 105 285 50 285 Z"/>
+    <path d="M 150 275 Q 165 262 185 270 Q 200 260 220 273 Q 220 285 150 285 Z"/>
+    <path d="M 265 275 Q 285 260 305 270 Q 325 258 350 275 Q 345 288 265 288 Z"/>
+  </g>
+  
+  <!-- かもめ（空に浮かぶ可愛い鳥） -->
+  <g class="thin-line" fill="none">
+    <path d="M 70 110 Q 77 102 85 110 Q 93 102 101 110"/>
+    <path d="M 290 85 Q 296 79 303 85 Q 310 79 317 85"/>
+  </g>
+</svg>

@@ -1,0 +1,259 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 爽やかな青空グラデーション -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    
+    <!-- 穏やかな海グラデーション -->
+    <linearGradient id="seaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .needle-line { stroke: #1e293b; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空（太陽なし） -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- ぽっかり浮かぶ白い雲 -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 20 60 Q 35 42 60 48 Q 78 35 98 48 Q 115 48 120 62 Q 124 74 105 80 L 25 80 Q 12 72 20 60 Z"/>
+    <path d="M 230 45 Q 245 32 262 38 Q 275 28 288 38 Q 300 38 305 48 Q 310 58 298 64 L 235 64 Q 222 56 230 45 Z"/>
+    <path d="M 320 65 Q 330 55 345 58 Q 355 52 365 58 Q 372 65 365 72 L 325 72 Z"/>
+  </g>
+
+  <!-- 2. 遠くの穏やかな青い海（広田湾） -->
+  <rect y="180" width="400" height="35" fill="url(#seaGrad)"/>
+  <line x1="0" y1="180" x2="400" y2="180" class="thin-line" stroke="#0369a1"/>
+  <path d="M 35 195 Q 50 190 65 195 M 330 195 Q 345 190 360 195" fill="none" class="thin-line" stroke="#bae6fd"/>
+
+  <!-- 3. 地面（砂利・土手）のベース -->
+  <path class="outline" fill="#e2e8f0" d="M 0 215 Q 120 205 250 212 T 400 210 L 400 300 L 0 300 Z"/>
+
+  <!-- ===============================
+       背景の建物：陸前高田ユースホステル（震災遺構）
+       =============================== -->
+  <g id="heritage-building">
+    <!-- 左のタワー・煙突部分 -->
+    <path class="outline" fill="#fef08a" d="
+      M 92 165 
+      L 108 165 
+      L 108 215 
+      L 92 215 
+      Z
+    "/>
+    <rect x="96" y="172" width="6" height="10" fill="#334155" class="thin-line"/>
+
+    <!-- メイン建屋（黄色の2階建て構造） -->
+    <path class="outline" fill="#fef08a" d="
+      M 108 195 
+      L 135 195
+      L 142 178
+      L 190 178
+      L 205 195
+      L 360 195
+      L 365 210
+      L 355 210
+      L 355 220
+      L 365 220
+      L 360 232
+      L 108 232
+      Z
+    "/>
+
+    <!-- 特徴的な傾斜屋根（三角屋根） -->
+    <path class="outline" fill="#eab308" d="
+      M 142 195 
+      L 200 174 
+      L 205 195 
+      Z
+    "/>
+    <line x1="160" y1="195" x2="175" y2="182" class="thin-line" stroke="#ca8a04"/>
+    <line x1="180" y1="195" x2="195" y2="182" class="thin-line" stroke="#ca8a04"/>
+
+    <!-- 2階部分の横長窓枠列 -->
+    <g fill="#334155" class="thin-line">
+      <rect x="215" y="200" width="14" height="10" rx="1"/>
+      <rect x="235" y="200" width="14" height="10" rx="1"/>
+      <rect x="255" y="200" width="14" height="10" rx="1"/>
+      <rect x="275" y="200" width="14" height="10" rx="1"/>
+      <rect x="295" y="200" width="14" height="10" rx="1"/>
+      <rect x="315" y="200" width="14" height="10" rx="1"/>
+      <rect x="335" y="200" width="14" height="10" rx="1"/>
+    </g>
+
+    <!-- 1階開口部 -->
+    <g fill="#1e293b" class="thin-line">
+      <rect x="225" y="217" width="18" height="11" rx="1"/>
+      <rect x="255" y="217" width="22" height="11" rx="1"/>
+      <rect x="290" y="217" width="25" height="11" rx="1"/>
+    </g>
+
+    <!-- 左側の傾斜した被災スロープ・階段 -->
+    <path class="outline" fill="#fef08a" d="
+      M 75 228 
+      L 108 200 
+      L 112 212 
+      L 85 235 
+      Z
+    "/>
+    <line x1="88" y1="218" x2="100" y2="208" class="thin-line"/>
+
+    <!-- 左端の展望ウッドデッキ・フェンス -->
+    <path class="outline" fill="#cbd5e1" d="M 20 220 L 60 220 L 60 240 L 20 240 Z"/>
+    <line x1="28" y1="205" x2="28" y2="220" class="thin-line" stroke="#78350f"/>
+    <line x1="38" y1="205" x2="38" y2="220" class="thin-line" stroke="#78350f"/>
+    <line x1="48" y1="205" x2="48" y2="220" class="thin-line" stroke="#78350f"/>
+    <line x1="25" y1="207" x2="52" y2="207" class="thin-line" stroke="#78350f"/>
+  </g>
+
+  <!-- 手前の堤防・マウンド -->
+  <path class="outline" fill="#fed7aa" d="M 0 240 Q 120 230 220 238 T 400 235 L 400 300 L 0 300 Z"/>
+  <path class="outline" fill="#cbd5e1" d="M 50 255 Q 140 238 230 248 T 380 252 L 400 300 L 20 300 Z"/>
+  <path class="outline" fill="#bbf7d0" d="M 80 280 Q 150 260 220 268 T 340 275 L 350 300 L 60 300 Z"/>
+
+  <!-- ===============================
+       奇跡の一本松
+       ・細長くまっすぐ伸びた幹
+       ・最上部に集中し、細いツンツン感を持った松の葉
+       =============================== -->
+  <g id="miracle-pine">
+    <!-- 長く高くそびえる幹 -->
+    <path class="outline" fill="#9a3412" d="
+      M 130 255 
+      L 132 85 
+      Q 133 75 134 65
+      L 137 65
+      Q 138 75 139 85
+      L 142 255 
+      Z
+    "/>
+    <line x1="135" y1="110" x2="135" y2="140" class="thin-line" stroke="#7c2d12"/>
+    <line x1="136" y1="160" x2="136" y2="190" class="thin-line" stroke="#7c2d12"/>
+    <line x1="136" y1="210" x2="136" y2="245" class="thin-line" stroke="#7c2d12"/>
+
+    <!-- 扇状に伸びる繊細な枝 -->
+    <g class="thin-line" stroke="#7c2d12" fill="none">
+      <path d="M 135 68 Q 135 52 135 44"/>
+      <path d="M 135 70 Q 115 65 78 86"/>
+      <path d="M 135 66 Q 110 54 90 60"/>
+      <path d="M 135 58 Q 120 46 108 48"/>
+      <path d="M 136 70 Q 160 66 198 78"/>
+      <path d="M 136 64 Q 165 54 182 56"/>
+      <path d="M 136 58 Q 152 45 168 46"/>
+    </g>
+
+    <!-- [最下段・左] -->
+    <g class="outline" fill="#15803d">
+      <path d="
+        M 56 86 
+        L 62 81 L 68 85 L 75 79 L 83 84 L 92 78 L 100 84 L 104 88 
+        L 98 93 L 90 91 L 82 95 L 74 91 L 65 94 L 58 90 Z
+      "/>
+    </g>
+    <g class="needle-line" stroke="#4ade80" fill="none">
+      <path d="M 64 83 L 70 80 M 76 81 L 84 77 M 88 80 L 96 76"/>
+    </g>
+
+    <!-- [最下段・右] -->
+    <g class="outline" fill="#15803d">
+      <path d="
+        M 172 78 
+        L 179 72 L 186 77 L 195 71 L 204 76 L 214 70 L 222 76 L 225 81 
+        L 218 86 L 209 84 L 200 88 L 191 84 L 182 87 L 174 82 Z
+      "/>
+    </g>
+    <g class="needle-line" stroke="#4ade80" fill="none">
+      <path d="M 181 74 L 189 71 M 196 73 L 205 69 M 210 72 L 218 68"/>
+    </g>
+
+    <!-- [中段・左] -->
+    <g class="outline" fill="#16a34a">
+      <path d="
+        M 72 62 
+        L 78 55 L 86 60 L 94 53 L 104 59 L 114 52 L 122 59 L 126 64 
+        L 118 70 L 108 67 L 98 72 L 88 68 L 78 72 L 74 66 Z
+      "/>
+    </g>
+    <g class="needle-line" stroke="#86efac" fill="none">
+      <path d="M 80 57 L 88 53 M 96 55 L 105 51 M 110 54 L 118 50"/>
+    </g>
+
+    <!-- [中段・右] -->
+    <g class="outline" fill="#16a34a">
+      <path d="
+        M 152 58 
+        L 158 51 L 167 56 L 176 49 L 186 55 L 196 48 L 204 55 L 208 60 
+        L 200 66 L 190 63 L 180 68 L 170 64 L 160 67 L 154 62 Z
+      "/>
+    </g>
+    <g class="needle-line" stroke="#86efac" fill="none">
+      <path d="M 160 53 L 169 49 M 177 51 L 187 47 M 191 50 L 200 46"/>
+    </g>
+
+    <!-- [中段・中央] -->
+    <g class="outline" fill="#15803d">
+      <path d="
+        M 118 64 
+        L 124 57 L 131 62 L 138 56 L 146 61 L 153 56 L 157 62 
+        L 151 68 L 142 66 L 134 70 L 126 67 L 120 70 Z
+      "/>
+    </g>
+
+    <!-- [最上部・左クラウン] -->
+    <g class="outline" fill="#22c55e">
+      <path d="
+        M 94 46 
+        L 101 38 L 110 43 L 118 35 L 128 41 L 136 34 L 142 41 
+        L 138 48 L 128 46 L 118 51 L 108 48 L 98 52 Z
+      "/>
+    </g>
+    <g class="needle-line" stroke="#bbf7d0" fill="none">
+      <path d="M 103 40 L 112 36 M 120 38 L 129 34"/>
+    </g>
+
+    <!-- [最上部・右クラウン] -->
+    <g class="outline" fill="#22c55e">
+      <path d="
+        M 132 42 
+        L 138 34 L 147 40 L 156 32 L 166 38 L 175 32 L 180 39 
+        L 175 47 L 165 45 L 154 50 L 144 47 L 135 50 Z
+      "/>
+    </g>
+    <g class="needle-line" stroke="#bbf7d0" fill="none">
+      <path d="M 140 36 L 149 32 M 158 35 L 168 31"/>
+    </g>
+
+    <!-- [てっぺん] -->
+    <g class="outline" fill="#16a34a">
+      <path d="
+        M 120 34 
+        L 126 26 L 132 30 L 136 21 L 142 29 L 148 24 L 153 32 
+        L 146 38 L 138 36 L 130 40 L 123 37 Z
+      "/>
+    </g>
+    <g class="needle-line" stroke="#bbf7d0" fill="none">
+      <path d="M 127 28 L 134 23 M 138 23 L 145 26"/>
+    </g>
+  </g>
+
+  <!-- 手前の小石・草のアクセント -->
+  <g class="outline" fill="#94a3b8">
+    <ellipse cx="115" cy="265" rx="10" ry="6"/>
+    <ellipse cx="155" cy="268" rx="14" ry="7"/>
+    <ellipse cx="250" cy="275" rx="12" ry="6"/>
+  </g>
+  <g class="thin-line" stroke="#16a34a" fill="none">
+    <path d="M 175 270 Q 170 260 166 262"/>
+    <path d="M 175 270 Q 176 258 178 259"/>
+    <path d="M 175 270 Q 182 262 185 264"/>
+  </g>
+</svg>

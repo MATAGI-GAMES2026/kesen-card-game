@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 40 45 Q 55 30 75 36 Q 90 26 108 36 Q 120 36 125 48 Q 128 58 112 64 L 45 64 Z"/>
+  </g>
+
+  <!-- 2. 玉山金山を囲む山並み・木立（深緑・アースカラー） -->
+  <path d="M 0 110 Q 120 70 240 95 T 400 80 L 400 160 L 0 160 Z" fill="#86efac"/>
+  <path class="outline" fill="#22c55e" d="M 0 130 Q 140 100 280 125 T 400 110 L 400 220 L 0 220 Z"/>
+
+  <!-- 奥の斜面の木立（幹と紅葉・新緑の葉） -->
+  <g class="outline">
+    <!-- 奥の斜面の木々 -->
+    <rect x="50" y="70" width="8" height="90" fill="#78350f"/>
+    <ellipse cx="54" cy="65" rx="30" ry="18" fill="#15803d"/>
+    <rect x="110" y="60" width="8" height="100" fill="#78350f"/>
+    <ellipse cx="114" cy="55" rx="35" ry="20" fill="#d97706"/>
+    <rect x="330" y="65" width="8" height="95" fill="#78350f"/>
+    <ellipse cx="334" cy="60" rx="32" ry="18" fill="#b45309"/>
+  </g>
+
+  <!-- 地面（なだらかな芝生・草地） -->
+  <path class="outline" fill="#fed7aa" d="M 0 190 Q 200 170 400 190 L 400 300 L 0 300 Z"/>
+  <path class="outline" fill="#86efac" d="M 0 220 Q 200 200 400 220 L 400 300 L 0 300 Z"/>
+  <path class="outline" fill="#4ade80" d="M 0 260 Q 200 240 400 260 L 400 300 L 0 300 Z"/>
+
+  <!-- 3. 奥の山裾に佇む「千人坑」の木造坑口（小さな祠・社のような屋根付き坑口） -->
+  <g class="outline" transform="translate(195, 130)">
+    <!-- 坑道穴（黒・暗がり） -->
+    <rect x="10" y="20" width="30" height="30" fill="#1e293b"/>
+    <!-- 木造の小屋組屋根（茶色） -->
+    <polygon points="25,5 -5,22 55,22" fill="#78350f"/>
+    <rect x="5" y="22" width="6" height="28" fill="#9a3412"/>
+    <rect x="39" y="22" width="6" height="28" fill="#9a3412"/>
+    <!-- 坑口から手前に流れる小さなせせらぎ -->
+    <path d="M 20 50 Q 25 75 10 90 L 40 90 Q 30 75 30 50 Z" fill="#38bdf8"/>
+  </g>
+
+  <!-- 4. 手前の史跡モニュメント（添付写真そのもの！） -->
+
+  <!-- [右側] 「千人坑」の背の高い角柱の石碑 -->
+  <g class="outline" transform="translate(290, 85)">
+    <!-- 石碑本体（白御影石・薄いグレー） -->
+    <polygon points="12,0 0,15 0,180 32,180 32,15 20,0" fill="#f8fafc"/>
+    <polygon points="20,0 32,15 32,180 44,170 44,12" fill="#cbd5e1"/>
+    <!-- 彫られた文字「千 人 坑」（黒くくっきり） -->
+    <g fill="#1e293b" font-family="'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif" font-weight="900" font-size="16" text-anchor="middle">
+      <text x="16" y="55">千</text>
+      <text x="16" y="90">人</text>
+      <text x="16" y="125">坑</text>
+    </g>
+  </g>
+
+  <!-- [左側] 丸みを帯びた大きな自然石の解説碑 -->
+  <g class="outline" transform="translate(60, 160)">
+    <!-- 自然石の巨石（ライトグレー） -->
+    <path fill="#cbd5e1" d="
+      M 30 110 
+      C 0 95, -10 50, 20 20 
+      C 60 -10, 140 -5, 180 30 
+      C 200 60, 190 100, 160 115 
+      Z
+    "/>
+    <!-- 金色の解説銘板パネル（中央にはめ込まれたプレート） -->
+    <g class="thin-line">
+      <rect x="42" y="32" width="105" height="65" rx="3" fill="#fde047"/>
+      <!-- パネルの文字行（可愛いミニマルなテキストライン） -->
+      <line x1="50" y1="42" x2="138" y2="42" stroke="#ca8a04" stroke-width="3"/>
+      <line x1="50" y1="52" x2="138" y2="52" stroke="#ca8a04" stroke-width="2"/>
+      <line x1="50" y1="62" x2="138" y2="62" stroke="#ca8a04" stroke-width="2"/>
+      <line x1="50" y1="72" x2="138" y2="72" stroke="#ca8a04" stroke-width="2"/>
+      <line x1="50" y1="82" x2="120" y2="82" stroke="#ca8a04" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- 傍らに立つ丸太の案内支柱 -->
+  <rect x="245" y="80" width="10" height="150" fill="#a16207" class="outline"/>
+</svg>

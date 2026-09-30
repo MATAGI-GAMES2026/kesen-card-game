@@ -1,0 +1,61 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+  <!-- 背景の山並み -->
+  <path d="M 0 130 Q 130 90 250 120 T 400 100 L 400 160 L 0 160 Z" fill="#86efac"/>
+  <path class="outline" fill="#4ade80" d="M 0 150 Q 140 115 280 145 T 400 125 L 400 200 L 0 200 Z"/>
+
+  <!-- 気仙杉の美林（真っ直ぐ天に伸びる杉の木並び） -->
+  <g class="outline">
+    <!-- 杉1 -->
+    <rect x="35" y="100" width="8" height="100" fill="#78350f"/>
+    <polygon points="39,40 18,120 60,120" fill="#166534"/>
+    <polygon points="39,20 22,80 56,80" fill="#15803d"/>
+    <!-- 杉2 -->
+    <rect x="85" y="110" width="9" height="90" fill="#78350f"/>
+    <polygon points="89,50 68,130 110,130" fill="#166534"/>
+    <polygon points="89,30 72,90 106,90" fill="#15803d"/>
+    <!-- 杉3（右側） -->
+    <rect x="325" y="100" width="9" height="100" fill="#78350f"/>
+    <polygon points="329,45 308,125 350,125" fill="#166534"/>
+    <polygon points="329,25 312,85 346,85" fill="#15803d"/>
+  </g>
+
+  <!-- 地面（森林の草地） -->
+  <path class="outline" fill="#22c55e" d="M 0 190 Q 200 170 400 190 L 400 300 L 0 300 Z"/>
+  <path class="outline" fill="#15803d" d="M 0 230 Q 200 215 400 235 L 400 300 L 0 300 Z"/>
+
+  <!-- 手前の気仙杉の丸太（年輪が見える切り株・ログ） -->
+  <g class="outline" transform="translate(130, 160)">
+    <!-- 丸太3（後ろ） -->
+    <rect x="25" y="20" width="90" height="28" fill="#ca8a04" rx="4"/>
+    <ellipse cx="25" cy="34" rx="12" ry="14" fill="#fef08a"/>
+    <ellipse cx="25" cy="34" rx="7" ry="9" fill="none" class="thin-line" stroke="#ca8a04"/>
+
+    <!-- 丸太1（手前左） -->
+    <rect x="15" y="55" width="105" height="32" fill="#ca8a04" rx="5"/>
+    <ellipse cx="15" cy="71" rx="14" ry="16" fill="#fef08a"/>
+    <ellipse cx="15" cy="71" rx="8" ry="10" fill="none" class="thin-line" stroke="#ca8a04"/>
+    <circle cx="15" cy="71" r="2.5" fill="#ca8a04"/>
+
+    <!-- 丸太2（手前右） -->
+    <rect x="75" y="70" width="85" height="30" fill="#ca8a04" rx="5"/>
+    <ellipse cx="75" cy="85" rx="13" ry="15" fill="#fef08a"/>
+    <ellipse cx="75" cy="85" rx="7" ry="9" fill="none" class="thin-line" stroke="#ca8a04"/>
+
+    <!-- 林業の斧（アックス 🪓） -->
+    <g transform="translate(85, 10) rotate(35)">
+      <rect x="2" y="10" width="7" height="65" rx="3" fill="#9a3412"/>
+      <path d="M 5 15 L 25 5 L 28 30 L 5 22 Z" fill="#cbd5e1"/>
+    </g>
+  </g>
+</svg>
+

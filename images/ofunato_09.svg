@@ -1,0 +1,63 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <linearGradient id="seaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+  <!-- 太平洋の大海原 -->
+  <rect y="130" width="400" height="170" fill="url(#seaGrad)"/>
+  <path d="M 30 150 Q 50 145 70 150 M 310 155 Q 330 150 350 155" fill="none" class="thin-line" stroke="#ffffff"/>
+
+  <!-- 綾里埼の岬（緑の断崖） -->
+  <path class="outline" fill="#22c55e" d="
+    M 240 300 
+    L 250 160 
+    Q 320 140 400 150 
+    L 400 300 
+    Z
+  "/>
+  <path class="outline" fill="#16a34a" d="M 280 180 Q 340 160 400 170 L 400 300 L 280 300 Z"/>
+
+  <!-- 綾里埼灯台（白く美しいシンボリックな灯台） -->
+  <g class="outline" transform="translate(290, 80)">
+    <!-- 灯台塔身（白） -->
+    <polygon points="25,50 15,110 45,110 35,50" fill="#ffffff"/>
+    <polygon points="27,65 21,80 39,80 33,65" fill="#ef4444"/>
+    <!-- 灯室（上部ランタン） -->
+    <rect x="22" y="32" width="16" height="18" fill="#fef08a"/>
+    <polygon points="30,18 16,32 44,32" fill="#ef4444"/>
+    <!-- 展望デッキ柵 -->
+    <line x1="14" y1="50" x2="46" y2="50" class="thin-line"/>
+    <!-- 光のビーム（黄色い輝き） -->
+    <polygon points="20,40 -60,25 -60,55" fill="#fef08a" opacity="0.6" stroke="none"/>
+  </g>
+
+  <!-- 綾里白浜（手前に広がる真っ白な砂浜と打ち寄せる波） -->
+  <path class="outline" fill="#f8fafc" d="M 0 210 Q 120 190 240 230 L 240 300 L 0 300 Z"/>
+  <path class="outline" fill="#e2e8f0" d="M 0 250 Q 100 230 200 270 L 200 300 L 0 300 Z"/>
+
+  <!-- 白浜の波打ち際の可愛い白波 -->
+  <g class="thin-line" fill="#ffffff">
+    <path d="M 40 215 Q 60 205 85 215 Q 110 208 135 220 Q 120 228 85 222 Q 55 228 40 215 Z"/>
+  </g>
+
+  <!-- 浜辺の貝殻と可愛いカモメ -->
+  <g class="outline" transform="translate(50, 245)">
+    <circle cx="15" cy="15" r="10" fill="#fed7aa"/>
+    <line x1="15" y1="5" x2="15" y2="25" class="thin-line" stroke="#ea580c"/>
+    <line x1="7" y1="9" x2="23" y2="21" class="thin-line" stroke="#ea580c"/>
+  </g>
+  <g class="thin-line" fill="none">
+    <path d="M 80 80 Q 90 70 100 80 Q 110 70 120 80"/>
+    <path d="M 130 95 Q 138 87 146 95 Q 154 87 162 95"/>
+  </g>
+</svg>
+

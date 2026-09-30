@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="70%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+
+    <!-- 雄大な三陸の海（水平線から手前の峡谷まで一体の海面） -->
+    <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="40%" stop-color="#0284c7"/>
+      <stop offset="80%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .fine-line { stroke: #1e293b; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 遠くの白い雲 -->
+  <g fill="#ffffff" class="thin-line">
+    <path d="M 50 45 Q 65 30 90 35 Q 105 25 125 35 Q 138 35 142 45 Q 145 55 130 60 L 55 60 Z"/>
+    <path d="M 260 35 Q 275 22 295 28 Q 310 18 325 28 Q 338 28 342 38 Q 345 48 330 52 L 265 52 Z"/>
+  </g>
+
+  <!-- 2. 太平洋の大海原（左右全面に展開し、左右の崖が手前に重なる構造） -->
+  <rect x="0" y="80" width="400" height="220" fill="url(#oceanGrad)"/>
+  <line x1="0" y1="80" x2="400" y2="80" class="thin-line" stroke="#0284c7"/>
+
+  <!-- 沖合の穏やかな波紋 -->
+  <g class="thin-line" stroke="#ffffff" fill="none" opacity="0.8">
+    <path d="M 160 100 Q 175 95 190 100"/>
+    <path d="M 205 105 Q 220 100 235 105"/>
+    <path d="M 175 125 Q 190 120 205 125"/>
+  </g>
+
+  <!-- 峡谷の間で押し寄せる波浪 -->
+  <path d="M 165 155 Q 185 148 205 155" fill="none" class="thin-line" stroke="#ffffff"/>
+  <path d="M 170 178 Q 188 170 208 178" fill="none" class="thin-line" stroke="#ffffff"/>
+
+  <!-- 峡谷の底で砕ける白い波しぶき・白波 -->
+  <ellipse cx="195" cy="205" rx="30" ry="10" fill="#ffffff" class="thin-line"/>
+  <ellipse cx="188" cy="235" rx="36" ry="12" fill="#bae6fd" class="thin-line"/>
+  <path d="M 160 260 Q 190 245 220 260 L 225 300 L 155 300 Z" fill="#0284c7"/>
+  <ellipse cx="192" cy="265" rx="32" ry="10" fill="#ffffff" class="thin-line"/>
+
+
+  <!-- 3. 黒崎仙峡：左右から迫り出す大迫力の海食崖（巨岩の峡谷） -->
+
+  <!-- [左側の巨岩壁] -->
+  <g>
+    <!-- 岩壁ベース（グレー・アースカラー） -->
+    <path class="outline" fill="#64748b" d="
+      M -20 320 
+      L -20 50 
+      Q 50 65 80 100 
+      L 120 120 
+      L 145 160 
+      L 155 200 
+      L 170 240 
+      L 185 320 
+      Z
+    "/>
+    <!-- 岩肌の割れ目・段差ハイライト -->
+    <path fill="#475569" d="
+      M 30 110 L 80 140 L 70 190 L 130 220 L 140 280 L 80 320 L 10 320 Z
+    "/>
+    <path class="thin-line" stroke="#334155" fill="none" d="
+      M 60 90 L 80 130 L 120 150 
+      M 90 160 L 110 200 L 150 230 
+      M 115 125 L 145 160
+    "/>
+  </g>
+
+  <!-- [右側の巨岩壁（特徴的な切り立ったクレバス岩）] -->
+  <g>
+    <!-- 右の岩壁ベース -->
+    <path class="outline" fill="#64748b" d="
+      M 420 320 
+      L 420 60 
+      Q 340 70 300 110 
+      L 245 125 
+      L 215 155 
+      L 210 200 
+      L 225 250 
+      L 240 320 
+      Z
+    "/>
+    <!-- 右の岩肌テクスチャ・陰影 -->
+    <path fill="#475569" d="
+      M 350 110 L 290 140 L 280 200 L 235 240 L 250 320 L 400 320 Z
+    "/>
+    <path class="thin-line" stroke="#334155" fill="none" d="
+      M 320 90 L 280 130 L 235 150 
+      M 290 160 L 250 200 L 225 240 
+      M 265 120 L 215 155
+    "/>
+  </g>
+
+  <!-- 4. 崖の上と斜面に生い茂る松林（緑豊かな深山・沿岸松） -->
+  <!-- 左上の松の木々 -->
+  <g class="outline" transform="translate(10, 20)">
+    <rect x="25" y="35" width="8" height="35" fill="#78350f"/>
+    <!-- 松の葉（段状） -->
+    <ellipse cx="29" cy="30" rx="32" ry="14" fill="#15803d"/>
+    <ellipse cx="29" cy="18" rx="25" ry="12" fill="#22c55e"/>
+    <ellipse cx="29" cy="6" rx="18" ry="9" fill="#4ade80"/>
+  </g>
+  <path class="outline" fill="#15803d" d="M -10 120 Q 30 100 60 125 L 30 150 L -10 150 Z"/>
+
+  <!-- 右上の松の木々 -->
+  <g class="outline" transform="translate(300, 25)">
+    <rect x="25" y="35" width="8" height="35" fill="#78350f"/>
+    <ellipse cx="29" cy="30" rx="30" ry="14" fill="#15803d"/>
+    <ellipse cx="29" cy="18" rx="24" ry="12" fill="#22c55e"/>
+    <ellipse cx="29" cy="6" rx="16" ry="9" fill="#4ade80"/>
+  </g>
+  <path class="outline" fill="#15803d" d="M 330 130 Q 370 110 410 135 L 410 160 L 350 160 Z"/>
+
+  <!-- 手前の緑の草木（手前左右のフレーム） -->
+  <path class="outline" fill="#166534" d="M -10 310 Q 60 250 120 310 Z"/>
+  <path class="outline" fill="#166534" d="M 280 310 Q 340 240 410 310 Z"/>
+</svg>

@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- 青空グラデーション（太陽なし） -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="65%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .mid-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .fine-line { stroke: #1e293b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. 爽やかな青空 -->
+  <rect width="400" height="300" fill="url(#skyGrad)"/>
+
+  <!-- 白い雲 -->
+  <g fill="#ffffff" class="mid-line">
+    <path d="M 25 45 Q 40 32 65 38 Q 80 28 95 38 Q 108 38 112 48 Q 115 58 100 64 L 30 64 Z"/>
+    <path d="M 280 35 Q 295 22 315 28 Q 330 18 345 28 Q 358 28 362 38 Q 365 48 350 52 L 285 52 Z"/>
+  </g>
+
+  <!-- 2. 背後の立根の山並み -->
+  <path d="M 0 100 Q 140 60 260 85 T 400 70 L 400 150 L 0 150 Z" fill="#86efac"/>
+  <path class="outline" fill="#22c55e" d="M 0 115 Q 160 80 300 105 T 400 90 L 400 170 L 0 170 Z"/>
+
+  <!-- 3. 広大なグラウンド（校庭の土）とアスファルト道路 -->
+  <path class="outline" fill="#fed7aa" d="M 0 170 L 400 170 L 400 300 L 0 300 Z"/>
+  <!-- 右側の進入路・アスファルト舗装路 -->
+  <polygon points="280,170 330,170 400,300 240,300" fill="#cbd5e1" class="outline"/>
+
+  <!-- ==========================================
+       4. 大船渡東高校（特徴的な円弧状のアールカーブ校舎＋三角形トラス窓大屋根）
+       ========================================== -->
+  <g id="higashi-high-school">
+
+    <!-- [A] 左翼棟（直線状の4階建て教室棟） -->
+    <g class="outline" fill="#f8fafc">
+      <!-- 校舎壁体（コンクリートとベージュのツートン） -->
+      <rect x="15" y="105" width="220" height="65"/>
+      <rect x="15" y="125" width="220" height="40" fill="#fde68a"/>
+      <!-- パラペット庇 -->
+      <line x1="12" y1="105" x2="238" y2="105" stroke="#334155" stroke-width="4"/>
+    </g>
+    <!-- 連続する教室窓（グリッド窓列） -->
+    <g fill="#38bdf8" class="fine-line">
+      <!-- 4階 -->
+      <rect x="25" y="110" width="20" height="9" rx="1"/>
+      <rect x="50" y="110" width="20" height="9" rx="1"/>
+      <rect x="75" y="110" width="20" height="9" rx="1"/>
+      <rect x="100" y="110" width="20" height="9" rx="1"/>
+      <rect x="125" y="110" width="20" height="9" rx="1"/>
+      <rect x="150" y="110" width="20" height="9" rx="1"/>
+      <rect x="175" y="110" width="20" height="9" rx="1"/>
+      <!-- 3階 -->
+      <rect x="25" y="125" width="20" height="9" rx="1"/>
+      <rect x="50" y="125" width="20" height="9" rx="1"/>
+      <rect x="75" y="125" width="20" height="9" rx="1"/>
+      <rect x="100" y="125" width="20" height="9" rx="1"/>
+      <rect x="125" y="125" width="20" height="9" rx="1"/>
+      <rect x="150" y="125" width="20" height="9" rx="1"/>
+      <rect x="175" y="125" width="20" height="9" rx="1"/>
+      <!-- 2階 -->
+      <rect x="25" y="140" width="20" height="9" rx="1"/>
+      <rect x="50" y="140" width="20" height="9" rx="1"/>
+      <rect x="75" y="140" width="20" height="9" rx="1"/>
+      <rect x="100" y="140" width="20" height="9" rx="1"/>
+      <rect x="125" y="140" width="20" height="9" rx="1"/>
+      <rect x="150" y="140" width="20" height="9" rx="1"/>
+      <rect x="175" y="140" width="20" height="9" rx="1"/>
+    </g>
+
+    <!-- [B] 右側：ダイナミックな円弧棟（半円・扇状にカーブする特徴的なシンボル棟！） -->
+    <g class="outline">
+      <!-- カーブを描く外壁（コンクリート＆ベージュ） -->
+      <path d="M 220 170 L 220 102 Q 300 88 385 108 L 375 170 Z" fill="#f8fafc"/>
+      <path d="M 220 170 L 220 125 Q 300 115 378 132 L 375 170 Z" fill="#fde68a"/>
+
+      <!-- 最上部の象徴的な「巨大円弧大屋根」と「三角形連続トラス窓」！ -->
+      <!-- 円弧大屋根スラブ -->
+      <path d="M 215 98 Q 300 80 390 104 L 388 95 Q 300 70 215 90 Z" fill="#cbd5e1"/>
+      <!-- 三角形スリット窓がぐるりと並ぶトラス帯 -->
+      <g fill="#1e293b" class="fine-line">
+        <polygon points="230,96 236,88 242,96"/>
+        <polygon points="246,95 252,87 258,95"/>
+        <polygon points="262,94 268,86 274,94"/>
+        <polygon points="278,93 284,85 290,93"/>
+        <polygon points="294,93 300,85 306,93"/>
+        <polygon points="310,94 316,86 322,94"/>
+        <polygon points="326,95 332,87 338,95"/>
+        <polygon points="342,97 348,89 354,97"/>
+        <polygon points="358,99 364,91 370,99"/>
+      </g>
+    </g>
+
+    <!-- 円弧棟のカーブした窓列 -->
+    <g fill="#38bdf8" class="fine-line">
+      <rect x="230" y="106" width="22" height="10" rx="1"/>
+      <rect x="260" y="105" width="22" height="10" rx="1"/>
+      <rect x="290" y="105" width="22" height="10" rx="1"/>
+      <rect x="320" y="107" width="22" height="10" rx="1"/>
+      <rect x="350" y="110" width="20" height="10" rx="1"/>
+
+      <rect x="230" y="125" width="22" height="10" rx="1"/>
+      <rect x="260" y="124" width="22" height="10" rx="1"/>
+      <rect x="290" y="124" width="22" height="10" rx="1"/>
+      <rect x="320" y="126" width="22" height="10" rx="1"/>
+      <rect x="350" y="128" width="20" height="10" rx="1"/>
+    </g>
+
+    <!-- [C] 手前の緑の防球ネット・フェンス（高校グラウンドの象徴！） -->
+    <g class="mid-line" stroke="#16a34a" fill="none">
+      <!-- 支柱ポール -->
+      <line x1="260" y1="135" x2="260" y2="215"/>
+      <line x1="272" y1="145" x2="272" y2="225"/>
+      <!-- 手前のネットフェンス（斜めネット線） -->
+      <path d="M 0 250 L 105 200 L 260 215" stroke-width="3.5"/>
+      <line x1="105" y1="195" x2="105" y2="270" stroke-width="4"/>
+      <line x1="165" y1="205" x2="165" y2="280" stroke-width="4"/>
+      <!-- ネットの菱形メッシュ風 -->
+      <line x1="0" y1="235" x2="105" y2="200" stroke="#86efac" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

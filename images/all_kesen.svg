@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- グラデーション定義 -->
+    <!-- 陸前高田：深みのあるロイヤルブルー -->
+    <linearGradient id="takataBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#172554"/>
+      <stop offset="40%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <!-- 大船渡：豊かなエメラルド＆フォレストグリーン -->
+    <linearGradient id="ofunatoGreen" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#022c22"/>
+      <stop offset="40%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+
+    <!-- 住田：温かみのある鮮烈なゴールドオレンジ -->
+    <linearGradient id="sumitaOrange" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="40%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+
+    <!-- プレミアムゴールド -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="35%" stop-color="#facc15"/>
+      <stop offset="70%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+
+    <!-- プレート用ゴールドグラデーション -->
+    <linearGradient id="ribbonGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="35%" stop-color="#fef08a"/>
+      <stop offset="75%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .thick-outline { stroke: #1e293b; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .mid-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .fine-line { stroke: #1e293b; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- ==========================================
+       1. 3市町 3分割放射状背景
+       ========================================== -->
+  <!-- 左上：陸前高田市（青） -->
+  <path d="M 200 150 L 200 0 L 0 0 L 0 255 Z" fill="url(#takataBlue)"/>
+  <!-- 青エリアの放射光線（光背） -->
+  <g fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.16">
+    <line x1="200" y1="150" x2="20" y2="15"/>
+    <line x1="200" y1="150" x2="70" y2="10"/>
+    <line x1="200" y1="150" x2="130" y2="5"/>
+    <line x1="200" y1="150" x2="15" y2="80"/>
+    <line x1="200" y1="150" x2="10" y2="140"/>
+    <line x1="200" y1="150" x2="10" y2="200"/>
+  </g>
+  <!-- 青エリアの装飾きらめき星 -->
+  <g fill="#93c5fd" opacity="0.7">
+    <polygon points="50,110 52,118 60,120 52,122 50,130 48,122 40,120 48,118"/>
+    <polygon points="120,180 122,185 127,187 122,189 120,194 118,189 113,187 118,185"/>
+    <polygon points="40,210 41,214 45,215 41,216 40,220 39,216 35,215 39,214"/>
+  </g>
+
+  <!-- 右上：大船渡市（緑） -->
+  <path d="M 200 150 L 200 0 L 400 0 L 400 255 Z" fill="url(#ofunatoGreen)"/>
+  <!-- 緑エリアの放射光線（光背） -->
+  <g fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.16">
+    <line x1="200" y1="150" x2="380" y2="15"/>
+    <line x1="200" y1="150" x2="330" y2="10"/>
+    <line x1="200" y1="150" x2="270" y2="5"/>
+    <line x1="200" y1="150" x2="385" y2="80"/>
+    <line x1="200" y1="150" x2="390" y2="140"/>
+    <line x1="200" y1="150" x2="390" y2="200"/>
+  </g>
+  <!-- 緑エリアの装飾きらめき星 -->
+  <g fill="#6ee7b7" opacity="0.7">
+    <polygon points="350,110 352,118 360,120 352,122 350,130 348,122 340,120 348,118"/>
+    <polygon points="280,180 282,185 287,187 282,189 280,194 278,189 273,187 278,185"/>
+    <polygon points="360,210 361,214 365,215 361,216 360,220 359,216 355,215 359,214"/>
+  </g>
+
+  <!-- 下部：住田町（オレンジ） -->
+  <path d="M 200 150 L 0 255 L 0 300 L 400 300 L 400 255 Z" fill="url(#sumitaOrange)"/>
+  <!-- オレンジエリアの放射光線（光背） -->
+  <g fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.2">
+    <line x1="200" y1="150" x2="60" y2="285"/>
+    <line x1="200" y1="150" x2="130" y2="295"/>
+    <line x1="200" y1="150" x2="200" y2="300"/>
+    <line x1="200" y1="150" x2="270" y2="295"/>
+    <line x1="200" y1="150" x2="340" y2="285"/>
+  </g>
+  <!-- オレンジエリアの装飾きらめき星 -->
+  <g fill="#fdba74" opacity="0.75">
+    <polygon points="80,265 82,270 87,272 82,274 80,279 78,274 73,272 78,270"/>
+    <polygon points="320,265 322,270 327,272 322,274 320,279 318,274 313,272 318,270"/>
+  </g>
+
+  <!-- 外枠カードフレーム（クラシックゴールド） -->
+  <rect x="3" y="3" width="394" height="294" fill="none" stroke="#ca8a04" stroke-width="3" rx="8"/>
+  <rect x="6" y="6" width="388" height="288" fill="none" stroke="#facc15" stroke-width="1.5" opacity="0.8" rx="6"/>
+
+
+  <!-- ==========================================
+       2. 3方向への黄金の放射境界線（ディバイダービーム）
+       ========================================== -->
+  <!-- 境界線の下地黒枠 -->
+  <line x1="200" y1="150" x2="200" y2="0" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+  <line x1="200" y1="150" x2="0" y2="255" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+  <line x1="200" y1="150" x2="400" y2="255" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- 黄金の光線本体 -->
+  <line x1="200" y1="150" x2="200" y2="0" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="200" y1="150" x2="0" y2="255" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="200" y1="150" x2="400" y2="255" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- 境界線の装飾リベット（小さなゴールド鋲） -->
+  <circle cx="200" cy="50" r="3.5" fill="#fef08a" stroke="#1e293b" stroke-width="1.5"/>
+  <circle cx="100" cy="202" r="3.5" fill="#fef08a" stroke="#1e293b" stroke-width="1.5"/>
+  <circle cx="300" cy="202" r="3.5" fill="#fef08a" stroke="#1e293b" stroke-width="1.5"/>
+
+
+  <!-- ==========================================
+       3. 3市町の豪華ネームプレート（放射状に配置）
+       ========================================== -->
+
+  <!-- ①【陸前高田市】ネームプレート（左上・斜め配置） -->
+  <g transform="translate(92, 58) rotate(-22)">
+    <!-- 影 -->
+    <rect x="-65" y="-15" width="130" height="30" rx="8" fill="#0f172a" opacity="0.5"/>
+    <!-- 台座プレート -->
+    <rect x="-67" y="-17" width="134" height="32" rx="8" fill="url(#ribbonGold)" class="thick-outline"/>
+    <!-- 内枠（ロイヤルブルー） -->
+    <rect x="-62" y="-12" width="124" height="22" rx="5" fill="#1e3a8a" stroke="#facc15" stroke-width="1.5"/>
+    <!-- 市名テキスト -->
+    <text x="0" y="5" text-anchor="middle" font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-weight="900" font-size="15" fill="#ffffff" letter-spacing="1">
+      陸前高田市
+    </text>
+    <!-- サイドアクセント（青ダイヤ） -->
+    <polygon points="-52,0 -48,-4 -44,0 -48,4" fill="#60a5fa"/>
+    <polygon points="52,0 48,-4 44,0 48,4" fill="#60a5fa"/>
+  </g>
+
+  <!-- ②【大船渡市】ネームプレート（右上・斜め配置） -->
+  <g transform="translate(308, 58) rotate(22)">
+    <!-- 影 -->
+    <rect x="-62" y="-15" width="124" height="30" rx="8" fill="#0f172a" opacity="0.5"/>
+    <!-- 台座プレート -->
+    <rect x="-64" y="-17" width="128" height="32" rx="8" fill="url(#ribbonGold)" class="thick-outline"/>
+    <!-- 内枠（フォレストグリーン） -->
+    <rect x="-59" y="-12" width="118" height="22" rx="5" fill="#064e3b" stroke="#facc15" stroke-width="1.5"/>
+    <!-- 市名テキスト -->
+    <text x="0" y="5" text-anchor="middle" font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-weight="900" font-size="15" fill="#ffffff" letter-spacing="2">
+      大船渡市
+    </text>
+    <!-- サイドアクセント（緑ダイヤ） -->
+    <polygon points="-49,0 -45,-4 -41,0 -45,4" fill="#34d399"/>
+    <polygon points="49,0 45,-4 41,0 45,4" fill="#34d399"/>
+  </g>
+
+  <!-- ③【住田町】ネームプレート（下部中央） -->
+  <g transform="translate(200, 246)">
+    <!-- 影 -->
+    <rect x="-60" y="-16" width="120" height="32" rx="9" fill="#0f172a" opacity="0.5"/>
+    <!-- 台座プレート -->
+    <rect x="-62" y="-18" width="124" height="34" rx="9" fill="url(#ribbonGold)" class="thick-outline"/>
+    <!-- 内枠（ディープアンバー） -->
+    <rect x="-57" y="-13" width="114" height="24" rx="6" fill="#7c2d12" stroke="#facc15" stroke-width="1.5"/>
+    <!-- 町名テキスト -->
+    <text x="0" y="5" text-anchor="middle" font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-weight="900" font-size="16" fill="#ffffff" letter-spacing="2.5">
+      住田町
+    </text>
+    <!-- サイドアクセント（オレンジダイヤ） -->
+    <polygon points="-47,0 -43,-4 -39,0 -43,4" fill="#fb923c"/>
+    <polygon points="47,0 43,-4 39,0 43,4" fill="#fb923c"/>
+  </g>
+
+
+  <!-- ==========================================
+       4. 中央メインエンブレム（ALL気仙・ゴールドメダリオン）
+       ========================================== -->
+  <g id="center-all-kesen-crest" transform="translate(200, 148)">
+    <!-- 放射状の黄金スターバースト（16方位の光背） -->
+    <g fill="url(#goldGrad)" opacity="0.95" class="outline">
+      <polygon points="0,-76 15,-27 70,-38 27,-15 76,0 27,15 70,38 15,27 0,76 -15,27 -70,38 -27,15 -76,0 -27,-15 -70,-38 -15,-27"/>
+    </g>
+
+    <!-- 外枠ゴールド大円盤 -->
+    <circle cx="0" cy="0" r="56" fill="url(#goldGrad)" class="thick-outline"/>
+    <!-- 内枠ダークロイヤルブルーサークル -->
+    <circle cx="0" cy="0" r="48" fill="#0f172a" stroke="#ca8a04" stroke-width="3"/>
+    <circle cx="0" cy="0" r="44" fill="#1e1b4b" stroke="#facc15" stroke-width="1.5"/>
+
+    <!-- メダリオン最上部のキングクラウン（王冠） -->
+    <g class="outline" transform="translate(0, -38)">
+      <polygon points="0,-15 10,-4 20,-13 17,4 -17,4 -20,-13 -10,-4" fill="#facc15"/>
+      <circle cx="0" cy="-16" r="3" fill="#ef4444"/>
+      <circle cx="-20" cy="-14" r="2.5" fill="#38bdf8"/>
+      <circle cx="20" cy="-14" r="2.5" fill="#38bdf8"/>
+    </g>
+
+    <!-- メインテキスト「ALL気仙」（中央に堂々と配置） -->
+    <g font-family="'Hiragino Sans', 'Meiryo', 'Arial Black', sans-serif" font-weight="900" text-anchor="middle">
+      <!-- 漆黒の立体シャドウ -->
+      <text x="0" y="11" font-size="27" fill="#020617" stroke="#020617" stroke-width="5" letter-spacing="1">ALL気仙</text>
+      <!-- ゴールドグラデーションエッジ -->
+      <text x="0" y="11" font-size="27" fill="#facc15" stroke="#facc15" stroke-width="2" letter-spacing="1">ALL気仙</text>
+      <!-- クッキリ鮮やかなホワイト本体 -->
+      <text x="0" y="9" font-size="27" fill="#ffffff" letter-spacing="1">ALL気仙</text>
+    </g>
+  </g>
+
+  <!-- 四隅のゴールドデコレーション（豪華なカードコーナー） -->
+  <g stroke="#facc15" stroke-width="2" fill="none" opacity="0.85">
+    <path d="M 12 25 L 12 12 L 25 12"/>
+    <circle cx="15" cy="15" r="2" fill="#facc15"/>
+
+    <path d="M 388 25 L 388 12 L 375 12"/>
+    <circle cx="385" cy="15" r="2" fill="#facc15"/>
+
+    <path d="M 12 275 L 12 288 L 25 288"/>
+    <circle cx="15" cy="285" r="2" fill="#facc15"/>
+
+    <path d="M 388 275 L 388 288 L 375 288"/>
+    <circle cx="385" cy="285" r="2" fill="#facc15"/>
+  </g>
+
+</svg>

@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>気仙町名カードゲーム パーク</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #ffffff;
+            --takata-color: #2563eb;
+            --ofunato-color: #0d9488;
+            --sumita-color: #ea580c;
+            --accent-red: #ef4444;
+            --accent-gold: #eab308;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --text-dark: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: #ffffff;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .view-screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .view-screen.active {
+            display: flex;
+        }
+
+        /* メニュー画面 */
+        /* メニュー画面（豪華カジノサロン＆パーク風） */
+        #menu-screen {
+            justify-content: center;
+            align-items: center;
+            padding: clamp(16px, 4vh, 32px) 20px;
+            background: radial-gradient(circle at 50% 25%, #1e3a8a33 0%, #0f172a 70%),
+                        radial-gradient(circle at 50% 85%, #064e3b22 0%, transparent 65%),
+                        #090d16;
+            gap: clamp(14px, 2.5vh, 22px);
+            overflow-y: auto;
+        }
+
+        .menu-title-area {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .menu-crown-badge {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            background: rgba(234, 179, 8, 0.12);
+            border: 1px solid rgba(234, 179, 8, 0.35);
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-bottom: 2px;
+        }
+
+        .menu-main-title {
+            font-size: clamp(26px, 6vw, 36px);
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, #fef08a 45%, #facc15 80%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(234, 179, 8, 0.35));
+            line-height: 1.15;
+        }
+
+        .menu-sub-title { 
+            font-size: clamp(11.5px, 2.5vw, 13.5px); 
+            color: #94a3b8; 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* 3Dカードファン演出 */
+        .menu-card-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: clamp(85px, 15vh, 115px);
+            position: relative;
+            perspective: 800px;
+            width: 100%;
+            margin: 2px 0;
+        }
+
+        .showcase-card {
+            width: clamp(56px, 14vw, 75px);
+            aspect-ratio: 1 / 1.45;
+            background: #ffffff;
+            border-radius: 6px;
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+            overflow: hidden;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        .showcase-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showcase-card.card-left {
+            transform: translateX(-44px) translateY(6px) rotate(-14deg);
+            border-color: #3b82f6;
+            z-index: 1;
+        }
+
+        .showcase-card.card-center {
+            transform: translateY(-4px) scale(1.08);
+            border-color: #facc15;
+            box-shadow: 0 10px 28px rgba(234, 179, 8, 0.45);
+            z-index: 2;
+        }
+
+        .showcase-card.card-right {
+            transform: translateX(44px) translateY(6px) rotate(14deg);
+            border-color: #ea580c;
+            z-index: 1;
+        }
+
+        .menu-card-showcase:hover .showcase-card.card-left {
+            transform: translateX(-56px) translateY(4px) rotate(-20deg) scale(1.05);
+        }
+        .menu-card-showcase:hover .showcase-card.card-center {
+            transform: translateY(-8px) scale(1.15);
+        }
+        .menu-card-showcase:hover .showcase-card.card-right {
+            transform: translateX(56px) translateY(4px) rotate(20deg) scale(1.05);
+        }
+
+        /* ゲーム選択ボタンリスト */
+        .menu-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .btn-menu-game {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #334155;
+            color: #f8fafc;
+            padding: 16px 22px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-menu-game:active { transform: scale(0.98); }
+        .btn-menu-game.active-game {
+            border-color: #475569;
+        }
+        .btn-menu-game:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 24px rgba(234, 179, 8, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .menu-game-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+            text-align: left;
+            min-width: 0;
+        }
+
+        .menu-game-title {
+            font-size: clamp(15px, 3.8vw, 17px);
+            font-weight: 800;
+            color: #f8fafc;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-game-desc {
+            font-size: clamp(10px, 2.3vw, 11.5px);
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-badge {
+            font-size: 11px;
+            font-weight: 900;
+            padding: 7px 12px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+            color: #0f172a;
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.35);
+            letter-spacing: 0.5px;
+        }
+
+        /* メニュー下部インフォメーション */
+        .menu-footer-notes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .menu-city-dots {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #cbd5e1;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dot-takata { color: #3b82f6; font-size: 13px; }
+        .dot-ofunato { color: #10b981; font-size: 13px; }
+        .dot-sumita { color: #f97316; font-size: 13px; }
+        .dot-joker { color: #facc15; font-size: 13px; }
+
+        .menu-deck-sub {
+            font-size: 10.5px;
+            color: #64748b;
+        }
+
+        /* ヘッダー */
+        header {
+            padding: 8px 14px;
+            background-color: #090d16;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            flex-shrink: 0;
+        }
+
+        h1 { font-size: 14px; font-weight: 700; color: #f8fafc; }
+        .header-actions { display: flex; gap: 6px; }
+
+        .btn-header {
+            background-color: #334155;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-header.btn-help {
+            background-color: #d97706;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* ステータスバー */
+        .turn-bar {
+            background-color: #1e293b;
+            padding: 6px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(11px, 2.5vw, 13px);
+            font-weight: 600;
+            flex-shrink: 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .turn-indicator {
+            padding: 2px 8px;
+            border-radius: 10px;
+            background-color: #64748b;
+            color: white;
+            font-size: 11px;
+        }
+
+        .turn-indicator.player-turn { background-color: var(--accent-green); }
+        .turn-indicator.cpu-turn { background-color: var(--accent-red); }
+
+        /* ===================
+           ポーカーUI
+           =================== */
+        .poker-stage {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            gap: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .poker-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 6px;
+            background-color: rgba(15, 23, 42, 0.75);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 8px 10px;
+            min-height: 0;
+            position: relative;
+        }
+
+        .poker-area-title {
+            font-size: clamp(11px, 2.6vw, 13px);
+            font-weight: 700;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .poker-cards-row {
+            display: flex;
+            justify-content: space-between;
+            gap: clamp(4px, 1.5vw, 10px);
+            width: 100%;
+            flex: 1;
+            align-items: center;
+            min-height: 0;
+        }
+
+        .poker-card-wrapper {
+            flex: 1;
+            height: 100%;
+            max-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-width: 0;
+        }
+
+        .poker-card {
+            width: 100%;
+            max-height: 100%;
+            aspect-ratio: 1 / 1.45;
+            background-color: var(--card-bg);
+            border-radius: clamp(6px, 1.5vw, 10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            padding: clamp(3px, 1vw, 6px);
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+            color: var(--text-dark);
+            border: clamp(2px, 0.4vw, 3px) solid #cbd5e1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poker-card.discard-select {
+            transform: translateY(8px);
+            opacity: 0.55;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 14px rgba(239, 68, 68, 0.6);
+        }
+
+        @keyframes glowPulsePlayer {
+            0% {
+                border-color: #f59e0b;
+                box-shadow: 0 0 12px #f59e0b, 0 0 24px rgba(245, 158, 11, 0.6);
+                transform: translateY(-4px) scale(1.03);
+            }
+            50% {
+                border-color: #fef08a;
+                box-shadow: 0 0 20px #fef08a, 0 0 35px rgba(254, 240, 138, 0.85);
+                transform: translateY(-7px) scale(1.06);
+            }
+            100% {
+                border-color: #f59e0b;
+                box-shadow: 0 0 12px #f59e0b, 0 0 24px rgba(245, 158, 11, 0.6);
+                transform: translateY(-4px) scale(1.03);
+            }
+        }
+
+        @keyframes glowPulseCpu {
+            0% {
+                border-color: #ec4899;
+                box-shadow: 0 0 12px #ec4899, 0 0 24px rgba(236, 72, 153, 0.6);
+                transform: translateY(-4px) scale(1.03);
+            }
+            50% {
+                border-color: #f472b6;
+                box-shadow: 0 0 20px #f472b6, 0 0 35px rgba(244, 114, 182, 0.85);
+                transform: translateY(-7px) scale(1.06);
+            }
+            100% {
+                border-color: #ec4899;
+                box-shadow: 0 0 12px #ec4899, 0 0 24px rgba(236, 72, 153, 0.6);
+                transform: translateY(-4px) scale(1.03);
+            }
+        }
+
+        .poker-card.highlight-player {
+            animation: glowPulsePlayer 1.3s infinite ease-in-out;
+            z-index: 5;
+        }
+
+        .poker-card.highlight-cpu {
+            animation: glowPulseCpu 1.3s infinite ease-in-out;
+            z-index: 5;
+        }
+
+        .hand-reveal-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 10px 22px;
+            border-radius: 24px;
+            font-size: clamp(14px, 3.8vw, 20px);
+            font-weight: 900;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 18px rgba(234, 179, 8, 0.6);
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+
+        .hand-reveal-banner.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .discard-badge {
+            font-size: clamp(8px, 2vw, 10px);
+            font-weight: bold;
+            color: #ffffff;
+            background-color: var(--accent-red);
+            padding: 1px 6px;
+            border-radius: 8px;
+            visibility: hidden;
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .discard-badge.show { visibility: visible; }
+
+        .poker-ctrl-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background-color: #090d16;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            flex-shrink: 0;
+        }
+
+        .poker-msg {
+            font-size: clamp(11px, 2.6vw, 13px);
+            color: #38bdf8;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn-poker-action {
+            background: linear-gradient(135deg, #ef4444, #f43f5e);
+            color: #ffffff;
+            border: none;
+            padding: clamp(10px, 2.5vh, 14px);
+            font-size: clamp(13px, 3.2vw, 16px);
+            font-weight: 800;
+            border-radius: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-poker-action.step-btn {
+            background: linear-gradient(135deg, #eab308, #f97316);
+            color: #0f172a;
+            box-shadow: 0 4px 14px rgba(234, 179, 8, 0.4);
+            animation: pulseBtn 1.5s infinite;
+        }
+
+        @keyframes pulseBtn {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* カード内部パーツ共通 */
+        .card-frame-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2px;
+            flex-shrink: 0;
+            margin-bottom: 2px;
+        }
+
+        .card-city-badge {
+            font-size: clamp(8px, 1.8vw, 11px);
+            font-weight: 800;
+            padding: 1px 4px;
+            border-radius: 4px;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+
+        .city-takata { background-color: var(--takata-color); }
+        .city-ofunato { background-color: var(--ofunato-color); }
+        .city-sumita { background-color: var(--sumita-color); }
+        .city-kesen { background: linear-gradient(135deg, #eab308, #ef4444); box-shadow: 0 0 6px rgba(234, 179, 8, 0.7); }
+        .area-joker { background: #facc15 !important; color: #0f172a !important; font-weight: 800 !important; }
+
+        .card-area-badge {
+            font-size: clamp(7px, 1.6vw, 10px);
+            font-weight: 600;
+            color: #475569;
+            background-color: #e2e8f0;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .card-image-slot {
+            flex: 1;
+            margin: 2px 0;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .card-image-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-placeholder-icon {
+            font-size: clamp(16px, 4vw, 26px);
+            opacity: 0.85;
+        }
+
+        .card-frame-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8fafc;
+            border-radius: 4px;
+            padding: 2px;
+            border: 1px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .card-main-name {
+            font-size: clamp(10px, 2.2vw, 14px);
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        .card-tag-row {
+            display: flex;
+            gap: 2px;
+            justify-content: center;
+            width: 100%;
+            margin-top: 1px;
+            flex-wrap: nowrap;
+            overflow: hidden;
+        }
+
+        .card-tag-pill {
+            font-size: clamp(6.5px, 1.4vw, 8.5px);
+            background-color: #ffffff;
+            color: #475569;
+            padding: 0 4px;
+            border-radius: 3px;
+            white-space: nowrap;
+            border: 0.5px solid #cbd5e1;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            line-height: 1.3;
+        }
+
+        /* 役連動タグ：気仙川ストレート（清流ブルー） */
+        .card-tag-pill.tag-river {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            border: 1px solid #38bdf8;
+            box-shadow: 0 0 4px rgba(56, 189, 248, 0.35);
+        }
+
+        /* 役連動タグ：ハイスクールフラッシュ（スクールパープル） */
+        .card-tag-pill.tag-school {
+            background-color: #f3e8ff;
+            color: #7e22ce;
+            border: 1px solid #c084fc;
+            box-shadow: 0 0 4px rgba(192, 132, 252, 0.35);
+        }
+
+        /* 役連動タグ：湯けむりフラッシュ（湯けむりコーラルピンク） */
+        .card-tag-pill.tag-onsen {
+            background-color: #ffe4e6;
+            color: #e11d48;
+            border: 1px solid #fb7185;
+            box-shadow: 0 0 4px rgba(251, 113, 133, 0.35);
+        }
+
+        /* 役連動タグ：万能カード（ゴールド） */
+        .card-tag-pill.tag-joker {
+            background-color: #fef08a;
+            color: #854d0e;
+            border: 1px solid #eab308;
+            box-shadow: 0 0 4px rgba(234, 179, 8, 0.35);
+        }
+
+        /* ===================================================
+           神経衰弱UI：完全フリー（テーブル散乱）配置
+           =================================================== */
+        .memory-info-bar {
+            background-color: #1e293b;
+            padding: 6px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(11px, 2.5vw, 13px);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .memory-difficulty-select {
+            background-color: #090d16;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        /* 緑のテーブルクロス風グラウンド・完全自由配置エリア */
+        .memory-field {
+            flex: 1;
+            position: relative;
+            background: radial-gradient(circle at center, #1b4332 0%, #081c15 100%);
+            overflow: hidden;
+            width: 100%;
+            min-height: 0;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+        }
+
+        /* 絶対座標で自由に置かれるカード */
+        .mem-free-card {
+            position: absolute;
+            aspect-ratio: 1 / 1.45;
+            perspective: 600px;
+            cursor: pointer;
+            transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+            transition: transform 0.25s ease, z-index 0.2s ease, opacity 0.4s ease;
+        }
+
+        .mem-free-card:hover {
+            z-index: 50 !important;
+            transform: translate(-50%, -50%) scale(1.15) rotate(0deg) !important;
+        }
+
+        .mem-card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mem-free-card.flipped .mem-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .mem-free-card.matched {
+            opacity: 0.12;
+            cursor: default;
+            pointer-events: none;
+            filter: grayscale(90%);
+        }
+
+        .mem-card-front, .mem-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: clamp(4px, 1.2vw, 8px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
+        }
+
+        .mem-card-front {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            transform: rotateY(180deg);
+            border: 1.5px solid #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            padding: 2px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .mem-card-front .card-frame-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1px;
+            margin-bottom: 1px;
+            padding: 0;
+            width: 100%;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .mem-card-front .card-city-badge {
+            font-size: 8px;
+            padding: 1px 3px;
+            border-radius: 3px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .mem-card-front .card-area-badge {
+            font-size: 7px;
+            padding: 0 2px;
+            border-radius: 2px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        /* 40枚マスター時はヘッダーが混雑しないよう、JOKER以外の地域バッジを非表示にしてスッキリ保つ */
+        .mem-card-diff-40 .mem-card-front .card-area-badge:not(.area-joker) {
+            display: none;
+        }
+
+        .mem-card-front .card-image-slot {
+            flex: 1 1 0%;
+            min-height: 0;
+            margin: 1px 0;
+            border-radius: 2px;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 0.5px solid #cbd5e1;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mem-card-front .card-frame-footer {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f8fafc;
+            border: 0.5px solid #cbd5e1;
+            border-radius: 3px;
+            padding: 1px 2px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-top: auto;
+        }
+
+        .mem-card-front .card-main-name {
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+
+        /* モーダル共通 */
+        .modal-overlay {
+            display: none !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, 0.88) !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 999 !important;
+            padding: 16px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active { display: flex !important; }
+
+        .help-modal-content {
+            background-color: #1e293b;
+            border: 2px solid var(--accent-gold);
+            border-radius: 18px;
+            padding: 18px;
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            animation: modalPop 0.25s ease-out;
+        }
+
+        .help-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 8px;
+        }
+
+        .help-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .help-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .help-item {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .help-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .help-rank-badge {
+            font-size: 10px;
+            font-weight: 800;
+            background-color: #334155;
+            color: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .help-rank-badge.top-rank {
+            background-color: var(--accent-gold);
+            color: #0f172a;
+        }
+
+        .help-hand-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        .help-desc {
+            font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        .help-targets {
+            font-size: 10px;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 2px;
+        }
+
+        .showdown-modal-content {
+            background-color: #1e293b;
+            border: 2px solid var(--accent-gold);
+            border-radius: 18px;
+            padding: 20px;
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .showdown-header {
+            text-align: center;
+            font-size: clamp(22px, 5vw, 26px);
+            font-weight: 900;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .showdown-result-box {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .showdown-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 8px;
+            border-radius: 8px;
+            background-color: rgba(30, 41, 59, 0.6);
+        }
+
+        .showdown-row.winner-row {
+            border: 1.5px solid var(--accent-gold);
+            background-color: rgba(234, 179, 8, 0.12);
+        }
+
+        .showdown-role {
+            font-size: 13px;
+            font-weight: bold;
+            color: #94a3b8;
+        }
+
+        .showdown-hand-text {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .btn-modal-close {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
+
+        .result-card {
+            background-color: #1e293b;
+            border: 2px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 340px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .result-title { font-size: 22px; font-weight: 800; color: var(--accent-gold); }
+        .btn-modal-restart {
+            background: linear-gradient(135deg, #ef4444, #f43f5e);
+            color: white; border: none; padding: 12px;
+            border-radius: 8px; font-weight: bold; cursor: pointer;
+        }
+
+        .poker-card.deck-back,
+        .mem-card-back {
+            background-color: #0f2b5c !important;
+            background-image: url('card_back.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            border: clamp(1.5px, 0.3vw, 2.5px) solid #3b82f6 !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. メニュー画面 -->
+    <div id="menu-screen" class="view-screen active">
+        <div class="menu-title-area">
+            <div class="menu-crown-badge">👑 KESEN CARD PARK 👑</div>
+            <div class="menu-main-title">気仙カードパーク</div>
+            <div class="menu-sub-title">陸前高田・大船渡・住田の町名で遊ぶご当地カードゲーム</div>
+        </div>
+
+        <!-- 3Dカードファン演出 -->
+        <div class="menu-card-showcase">
+            <div class="showcase-card card-left">
+                <img src="images/takata_02.svg?v=4" alt="気仙・一本松">
+            </div>
+            <div class="showcase-card card-center">
+                <img src="images/all_kesen.svg?v=5" alt="オール気仙">
+            </div>
+            <div class="showcase-card card-right">
+                <img src="images/sumita_01.svg?v=2" alt="世田米・住田高校">
+            </div>
+        </div>
+
+        <div class="menu-card-list">
+            <button class="btn-menu-game active-game" onclick="startGame('poker')">
+                <div class="menu-game-info">
+                    <div class="menu-game-title">気仙ポーカー</div>
+                    <div class="menu-game-desc">ダブルドロー・全8役の本格カード対戦</div>
+                </div>
+                <span class="game-badge">PLAY ▶</span>
+            </button>
+            <button class="btn-menu-game active-game" onclick="startGame('memory')">
+                <div class="menu-game-info">
+                    <div class="menu-game-title">気仙神経衰弱</div>
+                    <div class="menu-game-desc">机の上に散らばるカードからペアを探す</div>
+                </div>
+                <span class="game-badge">PLAY ▶</span>
+            </button>
+        </div>
+
+        <div class="menu-footer-notes">
+            <div class="menu-city-dots">
+                <span><span class="dot-takata">●</span> 陸前高田市 (8種)</span>
+                <span><span class="dot-ofunato">●</span> 大船渡市 (8種)</span>
+                <span><span class="dot-sumita">●</span> 住田町 (3種)</span>
+                <span><span class="dot-joker">★</span> オール気仙</span>
+            </div>
+            <div class="menu-deck-sub">全20種類・計40枚デッキ収録</div>
+        </div>
+    </div>
+
+    <!-- 2. 気仙ポーカー画面 -->
+    <div id="game-poker-screen" class="view-screen">
+        <header>
+            <h1>気仙ポーカー (ダブルドロー)</h1>
+            <div class="header-actions">
+                <button class="btn-header btn-help" onclick="openHelpModal()">📖 役一覧</button>
+                <button class="btn-header" onclick="initPokerGame()">配り直し</button>
+                <button class="btn-header" onclick="backToMenu()">メニュー</button>
+            </div>
+        </header>
+
+        <div class="turn-bar">
+            <span>残山札: <span id="poker-deck-count">30</span>枚</span>
+            <span>現在の手役: <span id="poker-live-hand" style="color:var(--accent-gold)">なし</span></span>
+        </div>
+
+        <div class="poker-stage" id="poker-stage-area" onclick="onStageClick()">
+            <div class="poker-area" id="poker-cpu-area">
+                <div class="poker-area-title">
+                    <span>CPU</span>
+                    <span id="poker-cpu-hand-name" style="color:var(--accent-red)">???</span>
+                </div>
+                <div class="poker-cards-row" id="poker-cpu-cards"></div>
+                <div class="hand-reveal-banner" id="cpu-reveal-banner"></div>
+            </div>
+
+            <div class="poker-area" id="poker-player-area">
+                <div class="poker-area-title">
+                    <span>あなた (プレイヤー)</span>
+                    <span id="poker-player-hand-name" style="color:var(--accent-green)">???</span>
+                </div>
+                <div class="poker-cards-row" id="poker-player-cards"></div>
+                <div class="hand-reveal-banner" id="player-reveal-banner"></div>
+            </div>
+
+            <div class="poker-ctrl-bar">
+                <div class="poker-msg" id="poker-msg">捨てたいカードをタップして「1回目の交換」を押してください</div>
+                <button id="poker-main-btn" class="btn-poker-action" onclick="onPokerActionClick(event)">1回目のカード交換 (DRAW 1/2)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 気仙神経衰弱画面 -->
+    <div id="game-memory-screen" class="view-screen">
+        <header>
+            <h1>気仙神経衰弱</h1>
+            <div class="header-actions">
+                <button class="btn-header" onclick="initMemoryGame()">最初から</button>
+                <button class="btn-header" onclick="backToMenu()">メニュー</button>
+            </div>
+        </header>
+
+        <div class="memory-info-bar">
+            <div>
+                難易度: 
+                <select id="memory-diff-select" class="memory-difficulty-select" onchange="initMemoryGame()">
+                    <option value="6">かんたん (12枚)</option>
+                    <option value="12" selected>ふつう (24枚)</option>
+                    <option value="20">マスター (40枚)</option>
+                </select>
+            </div>
+            <div id="mem-turn-indicator" class="turn-indicator player-turn">あなたの番</div>
+        </div>
+
+        <div class="turn-bar">
+            <span>あなた: <span id="mem-player-pairs" style="color:var(--accent-green)">0</span> ペア</span>
+            <span>CPU: <span id="mem-cpu-pairs" style="color:var(--accent-red)">0</span> ペア</span>
+            <span>残り: <span id="mem-remain-pairs">0</span> ペア</span>
+        </div>
+
+        <!-- テーブル上に散乱する自由配置フィールド -->
+        <div class="memory-field" id="memory-field"></div>
+    </div>
+
+    <!-- 役一覧ヘルプモーダル -->
+    <div id="poker-help-modal" class="modal-overlay">
+        <div class="help-modal-content">
+            <div class="help-header">
+                <span class="help-title">気仙ポーカー 役一覧</span>
+                <button class="btn-header" onclick="closeHelpModal()">閉じる</button>
+            </div>
+
+            <div class="help-list">
+                <div class="help-item" style="border: 1.5px solid var(--accent-gold); background: rgba(234, 179, 8, 0.08);">
+                    <div class="help-item-header">
+                        <span class="help-hand-name" style="color: var(--accent-gold);">👑 オール気仙 (JOKER)</span>
+                        <span class="help-rank-badge top-rank" style="background:linear-gradient(135deg,#eab308,#ef4444); color:white;">万能カード</span>
+                    </div>
+                    <div class="help-desc">どの町名・役（気仙川・高校・温泉・市町・ペア）としても機能する最強のワイルドカード！</div>
+                    <div class="help-targets" style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+                        万能タグ: <span class="card-tag-pill tag-joker">万能</span> <span class="card-tag-pill tag-river">気仙川</span>
+                    </div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-header">
+                        <span class="help-hand-name">気仙川ストレート</span>
+                        <span class="help-rank-badge top-rank">最強役 (Rank 7)</span>
+                    </div>
+                    <div class="help-desc">手札5枚すべてに青色の「気仙川」タグがある。</div>
+                    <div class="help-targets" style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+                        対象タグ: <span class="card-tag-pill tag-river">気仙川</span>（気仙・竹駒・横田・世田米・オール気仙）
+                    </div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-header">
+                        <span class="help-hand-name">ハイスクールフラッシュ</span>
+                        <span class="help-rank-badge top-rank">上位役 (Rank 6)</span>
+                    </div>
+                    <div class="help-desc">高校がある4つの町名（紫色の高校タグ）だけで手札5枚を構成。</div>
+                    <div class="help-targets" style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+                        対象タグ: <span class="card-tag-pill tag-school">〇〇高校</span>（高田・猪川・立根・世田米）
+                    </div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-header">
+                        <span class="help-hand-name">湯けむりフラッシュ</span>
+                        <span class="help-rank-badge">中堅役 (Rank 5)</span>
+                    </div>
+                    <div class="help-desc">温泉がある5つの町名（ピンク色の温泉タグ）だけで手札5枚を構成。</div>
+                    <div class="help-targets" style="display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+                        対象タグ: <span class="card-tag-pill tag-onsen">〇〇温泉</span>（広田・竹駒・日頃市・大船渡・三陸）
+                    </div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-header">
+                        <span class="help-hand-name">市町フラッシュ</span>
+                        <span class="help-rank-badge">中堅役 (Rank 4)</span>
+                    </div>
+                    <div class="help-desc">同一市町村のカードが手札に5枚揃う。</div>
+                    <div class="help-targets">高田フラッシュ / 大船渡フラッシュ など</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-header">
+                        <span class="help-hand-name">ツーペア</span>
+                        <span class="help-rank-badge">基本役 (Rank 3)</span>
+                    </div>
+                    <div class="help-desc">同じ町名のカードのペアが手札に2組ある。</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-header">
+                        <span class="help-hand-name">ワンペア</span>
+                        <span class="help-rank-badge">基本役 (Rank 2)</span>
+                    </div>
+                    <div class="help-desc">同じ町名のカードのペアが手札に1組ある。</div>
+                </div>
+
+                <div class="help-item">
+                    <div class="help-item-header">
+                        <span class="help-hand-name">ノーハンド (ブタ)</span>
+                        <span class="help-rank-badge">Rank 1</span>
+                    </div>
+                    <div class="help-desc">上記の役が手札にひとつも成立していない状態。</div>
+                </div>
+            </div>
+
+            <button class="btn-modal-close" style="padding:10px; font-size:13px; margin-top:4px;" onclick="closeHelpModal()">ゲームに戻る</button>
+        </div>
+    </div>
+
+    <!-- ショーダウン最終リザルトウィンドウ -->
+    <div id="poker-showdown-modal" class="modal-overlay">
+        <div class="showdown-modal-content">
+            <div class="showdown-header" id="showdown-modal-title">勝負結果</div>
+            
+            <div class="showdown-result-box">
+                <div class="showdown-row" id="row-result-player">
+                    <span class="showdown-role">あなた</span>
+                    <span class="showdown-hand-text" id="modal-player-hand" style="color:var(--accent-green);"></span>
+                </div>
+                <div class="showdown-row" id="row-result-cpu">
+                    <span class="showdown-role">CPU</span>
+                    <span class="showdown-hand-text" id="modal-cpu-hand" style="color:var(--accent-red);"></span>
+                </div>
+            </div>
+
+            <div id="modal-verdict-comment" style="text-align:center; font-size:14px; font-weight:800; color:#f8fafc;"></div>
+            <button class="btn-modal-close" onclick="closePokerShowdown(); initPokerGame();">もう一度勝負する</button>
+            <button class="btn-header" style="padding:10px;" onclick="closePokerShowdown(); backToMenu();">メニューに戻る</button>
+        </div>
+    </div>
+
+    <!-- 共通リザルトモーダル（神経衰弱用） -->
+    <div id="result-modal" class="modal-overlay">
+        <div class="result-card">
+            <div class="result-title" id="modal-title">勝利！</div>
+            <div id="modal-desc" style="font-size: 13px; color: #cbd5e1;"></div>
+            <div id="modal-score" style="font-size: 20px; font-weight: bold; color: var(--accent-gold);"></div>
+            <button id="modal-restart-btn" class="btn-modal-restart" onclick="closeModal()">もう一度対戦する</button>
+            <button class="btn-header" style="margin-top:6px;" onclick="closeModal(); backToMenu();">メニューに戻る</button>
+        </div>
+    </div>
+
+    <script>
+        const rawCardData = [
+            { id: "takata_01", name: "高田", city: "陸前高田市", area: "中心地", tags: ["市役所", "高田高校"], icon: "🏛️", image: "images/takata_01.svg?v=5" },
+            { id: "takata_02", name: "気仙", city: "陸前高田市", area: "沿岸", tags: ["一本松", "気仙川"], icon: "🌲", image: "images/takata_02.svg?v=4" },
+            { id: "takata_03", name: "広田", city: "陸前高田市", area: "沿岸", tags: ["黒崎仙峡", "黒崎温泉"], icon: "♨️", image: "images/takata_03.svg?v=5" },
+            { id: "takata_04", name: "小友", city: "陸前高田市", area: "沿岸", tags: ["わんぱく丸", "箱根山"], icon: "⛵", image: "images/takata_04.svg?v=4" },
+            { id: "takata_05", name: "米崎", city: "陸前高田市", area: "沿岸", tags: ["リンゴ", "あかまえ"], icon: "🍎", image: "images/takata_05.svg?v=4" },
+            { id: "takata_06", name: "矢作", city: "陸前高田市", area: "山間", tags: ["宥健尊師堂", "生出"], icon: "⛩️", image: "images/takata_06.svg?v=6" },
+            { id: "takata_07", name: "竹駒", city: "陸前高田市", area: "内陸", tags: ["気仙川", "玉山温泉"], icon: "⛏️", image: "images/takata_07.svg?v=4" },
+            { id: "takata_08", name: "横田", city: "陸前高田市", area: "山間", tags: ["鮎釣り", "気仙川"], icon: "🎣", image: "images/takata_08.svg?v=4" },
+            { id: "ofunato_01", name: "大船渡", city: "大船渡市", area: "中心地", tags: ["魚市場", "大船渡温泉"], icon: "🐟", image: "images/ofunato_01.svg?v=2" },
+            { id: "ofunato_02", name: "盛", city: "大船渡市", area: "中心地", tags: ["盛駅", "三鉄"], icon: "🚉", image: "images/ofunato_02.svg?v=2" },
+            { id: "ofunato_03", name: "赤崎", city: "大船渡市", area: "沿岸", tags: ["セメント", "工場"], icon: "🏭", image: "images/ofunato_03.svg?v=2" },
+            { id: "ofunato_04", name: "猪川", city: "大船渡市", area: "内陸", tags: ["銀杏", "大船渡高校"], icon: "🏫", image: "images/ofunato_04.svg?v=2" },
+            { id: "ofunato_05", name: "立根", city: "大船渡市", area: "内陸", tags: ["円弧校舎", "大船渡東高校"], icon: "🏫", image: "images/ofunato_05.svg?v=2" },
+            { id: "ofunato_06", name: "日頃市", city: "大船渡市", area: "山間", tags: ["五葉山", "五葉温泉"], icon: "⛰️", image: "images/ofunato_06.svg?v=2" },
+            { id: "ofunato_07", name: "末崎", city: "大船渡市", area: "沿岸", tags: ["碁石海岸", "穴通磯"], icon: "🌊", image: "images/ofunato_07.svg" },
+            { id: "ofunato_08", name: "三陸", city: "大船渡市", area: "沿岸", tags: ["アワビ", "三陸温泉"], icon: "🐚", image: "images/ofunato_08.svg?v=2" },
+            { id: "kesen_joker", name: "オール気仙", city: "気仙地区", area: "JOKER", tags: ["気仙川", "万能"], icon: "👑", image: "images/all_kesen.svg?v=5" },
+            { id: "sumita_01", name: "世田米", city: "住田町", area: "中心地", tags: ["住田高校", "気仙川"], icon: "🏫", image: "images/sumita_01.svg?v=2" },
+            { id: "sumita_02", name: "上有住", city: "住田町", area: "山間", tags: ["滝観洞", "JR駅"], icon: "🕳️", image: "images/sumita_02.svg" },
+            { id: "sumita_03", name: "下有住", city: "住田町", area: "山間", tags: ["林業", "気仙杉"], icon: "🪵", image: "images/sumita_03.svg" }
+        ];
+
+        const HIGH_SCHOOL_TOWNS = ["高田", "猪川", "立根", "世田米"];
+        const ONSEN_TOWNS = ["広田", "竹駒", "日頃市", "大船渡", "三陸"];
+
+        function createCardElement(card) {
+            const cardEl = document.createElement('div');
+            cardEl.className = 'poker-card';
+
+            let cityClass = 'city-takata';
+            if (card.city === '大船渡市') cityClass = 'city-ofunato';
+            if (card.city === '住田町') cityClass = 'city-sumita';
+            if (card.city === '気仙全域' || card.city === '気仙地区') cityClass = 'city-kesen';
+
+            const areaClass = card.area === 'JOKER' ? 'card-area-badge area-joker' : 'card-area-badge';
+            const tagsHtml = card.tags.slice(0, 2).map(t => {
+                let tagClass = 'card-tag-pill';
+                if (t === '気仙川') tagClass += ' tag-river';
+                else if (t.includes('高校')) tagClass += ' tag-school';
+                else if (t.includes('温泉')) tagClass += ' tag-onsen';
+                else if (t === '万能') tagClass += ' tag-joker';
+                return `<span class="${tagClass}">${t}</span>`;
+            }).join('');
+            const slotContent = card.image
+                ? `<img src="${card.image}" alt="${card.name}">`
+                : `<div class="card-placeholder-icon">${card.icon || '🌲'}</div>`;
+
+            cardEl.innerHTML = `
+                <div class="card-frame-header">
+                    <span class="card-city-badge ${cityClass}">${card.city.replace('市', '').replace('町', '')}</span>
+                    <span class="${areaClass}">${card.area}</span>
+                </div>
+                <div class="card-image-slot">
+                    ${slotContent}
+                </div>
+                <div class="card-frame-footer">
+                    <div class="card-main-name">${card.name}</div>
+                    <div class="card-tag-row">${tagsHtml}</div>
+                </div>
+            `;
+            return cardEl;
+        }
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function startGame(mode) {
+            if (mode === 'poker') {
+                showScreen('game-poker-screen');
+                initPokerGame();
+            } else if (mode === 'memory') {
+                showScreen('game-memory-screen');
+                initMemoryGame();
+            }
+        }
+
+        function backToMenu() {
+            closeHelpModal();
+            closePokerShowdown();
+            closeModal();
+            showScreen('menu-screen');
+        }
+
+        function openHelpModal() {
+            document.getElementById('poker-help-modal').classList.add('active');
+        }
+
+        function closeHelpModal() {
+            document.getElementById('poker-help-modal').classList.remove('active');
+        }
+
+        /* ===================
+           ポーカーロジック
+           =================== */
+        let pokerDeck = [];
+        let pokerPlayerHand = [];
+        let pokerCpuHand = [];
+        let pokerDiscardFlags = [false, false, false, false, false];
+        let pokerRound = 1;
+        let showdownPhase = 0;
+
+        function initPokerGame() {
+            closeHelpModal();
+            closePokerShowdown();
+            closeModal();
+            hideRevealBanners();
+            showdownPhase = 0;
+
+            pokerDeck = [];
+            let uniqueId = 0;
+            rawCardData.forEach(card => {
+                pokerDeck.push({ ...card, instanceId: uniqueId++ });
+                pokerDeck.push({ ...card, instanceId: uniqueId++ });
+            });
+
+            for (let i = pokerDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pokerDeck[i], pokerDeck[j]] = [pokerDeck[j], pokerDeck[i]];
+            }
+
+            pokerPlayerHand = [];
+            pokerCpuHand = [];
+            pokerDiscardFlags = [false, false, false, false, false];
+            pokerRound = 1;
+
+            for (let i = 0; i < 5; i++) {
+                pokerPlayerHand.push(pokerDeck.pop());
+                pokerCpuHand.push(pokerDeck.pop());
+            }
+
+            document.getElementById('poker-cpu-hand-name').innerText = "???";
+            document.getElementById('poker-player-hand-name').innerText = "???";
+            const btn = document.getElementById('poker-main-btn');
+            btn.disabled = false;
+            btn.classList.remove('step-btn');
+            updateActionBtnText();
+
+            updatePokerUI();
+        }
+
+        function evaluatePokerHand(hand) {
+            const jokerIndices = [];
+            const nonJokerIndices = [];
+            hand.forEach((c, idx) => {
+                if (c.id === 'kesen_joker') {
+                    jokerIndices.push(idx);
+                } else {
+                    nonJokerIndices.push(idx);
+                }
+            });
+            const numJokers = jokerIndices.length;
+
+            // 1. 気仙川ストレート (Rank 7): 非ジョーカーがすべて「気仙川」タグ持ち
+            const allRiver = nonJokerIndices.every(idx => hand[idx].tags && hand[idx].tags.includes("気仙川"));
+            if (allRiver) {
+                return { rank: 7, name: "気仙川ストレート", highlightIndices: [0, 1, 2, 3, 4] };
+            }
+
+            // 2. ハイスクールフラッシュ (Rank 6): 非ジョーカーがすべて高校のある町名
+            const allHs = nonJokerIndices.every(idx => HIGH_SCHOOL_TOWNS.includes(hand[idx].name));
+            if (allHs) {
+                return { rank: 6, name: "ハイスクールフラッシュ", highlightIndices: [0, 1, 2, 3, 4] };
+            }
+
+            // 3. 湯けむりフラッシュ (Rank 5): 非ジョーカーがすべて温泉・温浴施設のある町名
+            const allOnsen = nonJokerIndices.every(idx => ONSEN_TOWNS.includes(hand[idx].name));
+            if (allOnsen) {
+                return { rank: 5, name: "湯けむりフラッシュ", highlightIndices: [0, 1, 2, 3, 4] };
+            }
+
+            // 4. 市町フラッシュ (Rank 4): 非ジョーカーがすべて同一市町
+            const CITIES = ["陸前高田市", "大船渡市", "住田町"];
+            for (const city of CITIES) {
+                const isCityFlush = nonJokerIndices.length > 0 && nonJokerIndices.every(idx => hand[idx].city === city);
+                if (isCityFlush) {
+                    return { rank: 4, name: `${city.replace('市','').replace('町','')}フラッシュ`, highlightIndices: [0, 1, 2, 3, 4] };
+                }
+            }
+
+            // ペア集計
+            const nameGroups = {};
+            nonJokerIndices.forEach(idx => {
+                const name = hand[idx].name;
+                if (!nameGroups[name]) nameGroups[name] = [];
+                nameGroups[name].push(idx);
+            });
+
+            const pairNames = Object.keys(nameGroups).filter(name => nameGroups[name].length >= 2);
+            const singleNames = Object.keys(nameGroups).filter(name => nameGroups[name].length === 1);
+
+            // 5. ツーペア (Rank 3)
+            // A. ナチュラルペアが2組
+            if (pairNames.length >= 2) {
+                const hIndices = [...nameGroups[pairNames[0]].slice(0, 2), ...nameGroups[pairNames[1]].slice(0, 2)];
+                return { rank: 3, name: "ツーペア", highlightIndices: hIndices };
+            }
+            // B. ナチュラルペア1組 + ジョーカー1枚以上 + 単騎1枚以上
+            if (pairNames.length === 1 && numJokers >= 1 && singleNames.length >= 1) {
+                const hIndices = [...nameGroups[pairNames[0]].slice(0, 2), nameGroups[singleNames[0]][0], jokerIndices[0]];
+                return { rank: 3, name: "ツーペア", highlightIndices: hIndices };
+            }
+            // C. ジョーカー2枚 + 単騎2枚以上
+            if (numJokers >= 2 && singleNames.length >= 2) {
+                const hIndices = [nameGroups[singleNames[0]][0], jokerIndices[0], nameGroups[singleNames[1]][0], jokerIndices[1]];
+                return { rank: 3, name: "ツーペア", highlightIndices: hIndices };
+            }
+
+            // 6. ワンペア (Rank 2)
+            // A. ナチュラルペア1組
+            if (pairNames.length === 1) {
+                return { rank: 2, name: "ワンペア", highlightIndices: nameGroups[pairNames[0]].slice(0, 2) };
+            }
+            // B. ジョーカー1枚以上 + 単騎1枚以上
+            if (numJokers >= 1 && singleNames.length >= 1) {
+                return { rank: 2, name: "ワンペア", highlightIndices: [nameGroups[singleNames[0]][0], jokerIndices[0]] };
+            }
+            // C. ジョーカー2枚（ジョーカー同士でペア）
+            if (numJokers >= 2) {
+                return { rank: 2, name: "ワンペア", highlightIndices: [jokerIndices[0], jokerIndices[1]] };
+            }
+
+            // 7. ノーハンド (Rank 1)
+            return { rank: 1, name: "ノーハンド", highlightIndices: [] };
+        }
+
+        function togglePokerDiscard(index) {
+            if (pokerRound > 2 || showdownPhase > 0) return;
+            pokerDiscardFlags[index] = !pokerDiscardFlags[index];
+            updateActionBtnText();
+            updatePokerUI();
+        }
+
+        function updateActionBtnText() {
+            const hasDiscard = pokerDiscardFlags.some(f => f);
+            const btn = document.getElementById('poker-main-btn');
+            const msg = document.getElementById('poker-msg');
+
+            if (pokerRound === 1) {
+                btn.innerText = hasDiscard ? "1回目のカード交換 (DRAW 1/2)" : "カードを交換せず次へ (STAND 1/2)";
+                msg.innerText = "捨てたいカードを選んで交換（1回目）、またはそのまま進めます";
+            } else if (pokerRound === 2) {
+                btn.innerText = hasDiscard ? "最終交換して勝負！ (DRAW 2/2)" : "この手札で勝負！ (SHOWDOWN)";
+                msg.innerText = "捨てたいカードを選んで最終交換（2回目）、または勝負に進みます";
+            }
+        }
+
+        function onPokerActionClick(event) {
+            if (event) event.stopPropagation();
+
+            if (showdownPhase === 1) {
+                advanceToCpuReveal();
+            } else if (showdownPhase === 2) {
+                advanceToFinalModal();
+            } else if (pokerRound === 1) {
+                executePokerDraw(1);
+            } else if (pokerRound === 2) {
+                executePokerDraw(2);
+            }
+        }
+
+        function onStageClick() {
+            if (showdownPhase === 1) {
+                advanceToCpuReveal();
+            } else if (showdownPhase === 2) {
+                advanceToFinalModal();
+            }
+        }
+
+        function executePokerDraw(round) {
+            for (let i = 0; i < 5; i++) {
+                if (pokerDiscardFlags[i]) {
+                    pokerPlayerHand[i] = pokerDeck.pop();
+                }
+            }
+            pokerDiscardFlags = [false, false, false, false, false];
+
+            cpuDrawAI(round);
+
+            if (round === 1) {
+                pokerRound = 2;
+                updateActionBtnText();
+                updatePokerUI();
+            } else {
+                pokerRound = 3;
+                startPlayerReveal();
+            }
+        }
+
+        function startPlayerReveal() {
+            showdownPhase = 1;
+            const playerResult = evaluatePokerHand(pokerPlayerHand);
+
+            document.getElementById('poker-player-hand-name').innerText = playerResult.name;
+            renderPlayerCards(playerResult.highlightIndices);
+
+            if (playerResult.rank > 1) {
+                showRevealBanner('player-reveal-banner', `【${playerResult.name}】！`);
+            } else {
+                showRevealBanner('player-reveal-banner', `役なし (ノーハンド)`);
+            }
+
+            document.getElementById('poker-msg').innerText = "あなたの役が確定しました！タップして相手の手札を確認しましょう";
+            const btn = document.getElementById('poker-main-btn');
+            btn.innerText = "タップして相手の手札を見る ▶";
+            btn.classList.add('step-btn');
+        }
+
+        function advanceToCpuReveal() {
+            showdownPhase = 2;
+            const cpuResult = evaluatePokerHand(pokerCpuHand);
+
+            document.getElementById('poker-cpu-hand-name').innerText = cpuResult.name;
+            renderCpuCards(true, cpuResult.highlightIndices);
+
+            if (cpuResult.rank > 1) {
+                showRevealBanner('cpu-reveal-banner', `【${cpuResult.name}】！`);
+            } else {
+                showRevealBanner('cpu-reveal-banner', `役なし (ノーハンド)`);
+            }
+
+            document.getElementById('poker-msg').innerText = "相手の手札がオープン！タップして結果を表示します";
+            const btn = document.getElementById('poker-main-btn');
+            btn.innerText = "タップして勝敗判定へ ▶";
+        }
+
+        function advanceToFinalModal() {
+            showdownPhase = 0;
+            const playerResult = evaluatePokerHand(pokerPlayerHand);
+            const cpuResult = evaluatePokerHand(pokerCpuHand);
+            openFinalResultModal(playerResult, cpuResult);
+        }
+
+        function showRevealBanner(elementId, text) {
+            const el = document.getElementById(elementId);
+            el.innerText = text;
+            el.classList.add('show');
+        }
+
+        function hideRevealBanners() {
+            document.getElementById('player-reveal-banner').classList.remove('show');
+            document.getElementById('cpu-reveal-banner').classList.remove('show');
+        }
+
+        function openFinalResultModal(playerResult, cpuResult) {
+            const titleEl = document.getElementById('showdown-modal-title');
+            const rowPlayer = document.getElementById('row-result-player');
+            const rowCpu = document.getElementById('row-result-cpu');
+            const commentEl = document.getElementById('modal-verdict-comment');
+
+            document.getElementById('modal-player-hand').innerText = playerResult.name;
+            document.getElementById('modal-cpu-hand').innerText = cpuResult.name;
+
+            rowPlayer.classList.remove('winner-row');
+            rowCpu.classList.remove('winner-row');
+
+            if (playerResult.rank > cpuResult.rank) {
+                titleEl.innerText = "あなたの勝利！";
+                titleEl.style.color = "var(--accent-green)";
+                rowPlayer.classList.add('winner-row');
+                commentEl.innerText = `見事な【${playerResult.name}】でCPUに勝利しました！`;
+            } else if (playerResult.rank < cpuResult.rank) {
+                titleEl.innerText = "CPUの勝利...";
+                titleEl.style.color = "var(--accent-red)";
+                rowCpu.classList.add('winner-row');
+                commentEl.innerText = `CPUの【${cpuResult.name}】に届きませんでした...`;
+            } else {
+                titleEl.innerText = "引き分け！";
+                titleEl.style.color = "var(--accent-gold)";
+                commentEl.innerText = `両者ともに【${playerResult.name}】の好勝負！`;
+            }
+
+            document.getElementById('poker-showdown-modal').classList.add('active');
+        }
+
+        function closePokerShowdown() {
+            document.getElementById('poker-showdown-modal').classList.remove('active');
+        }
+
+        function cpuDrawAI(round) {
+            const nameCounts = {};
+            const cityCounts = {};
+            let riverCount = 0;
+            let hsCount = 0;
+            let onsenCount = 0;
+            let jokerCount = 0;
+
+            pokerCpuHand.forEach(c => {
+                if (c.id === 'kesen_joker') {
+                    jokerCount++;
+                } else {
+                    nameCounts[c.name] = (nameCounts[c.name] || 0) + 1;
+                    cityCounts[c.city] = (cityCounts[c.city] || 0) + 1;
+                    if (c.tags.includes("気仙川")) riverCount++;
+                    if (HIGH_SCHOOL_TOWNS.includes(c.name)) hsCount++;
+                    if (ONSEN_TOWNS.includes(c.name)) onsenCount++;
+                }
+            });
+
+            const effectiveRiver = riverCount + jokerCount;
+            const effectiveHs = hsCount + jokerCount;
+            const effectiveOnsen = onsenCount + jokerCount;
+
+            let targetMode = "none";
+            if (effectiveRiver >= 3) targetMode = "river";
+            else if (effectiveHs >= 3) targetMode = "hs";
+            else if (effectiveOnsen >= 3) targetMode = "onsen";
+            else {
+                for (const city in cityCounts) {
+                    if (cityCounts[city] + jokerCount >= 3) {
+                        targetMode = "city";
+                        break;
+                    }
+                }
+            }
+
+            for (let i = 0; i < 5; i++) {
+                const c = pokerCpuHand[i];
+                let keep = false;
+
+                // ジョーカーは絶対にキープ！
+                if (c.id === 'kesen_joker') keep = true;
+                if (nameCounts[c.name] >= 2) keep = true;
+                if (targetMode === "river" && (c.id === 'kesen_joker' || c.tags.includes("気仙川"))) keep = true;
+                if (targetMode === "hs" && (c.id === 'kesen_joker' || HIGH_SCHOOL_TOWNS.includes(c.name))) keep = true;
+                if (targetMode === "onsen" && (c.id === 'kesen_joker' || ONSEN_TOWNS.includes(c.name))) keep = true;
+                if (targetMode === "city" && (c.id === 'kesen_joker' || cityCounts[c.city] >= 2)) keep = true;
+
+                if (!keep && pokerDeck.length > 0) {
+                    pokerCpuHand[i] = pokerDeck.pop();
+                }
+            }
+        }
+
+        function renderPlayerCards(highlights = []) {
+            const playerContainer = document.getElementById('poker-player-cards');
+            playerContainer.innerHTML = '';
+            pokerPlayerHand.forEach((card, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'poker-card-wrapper';
+
+                const cardEl = createCardElement(card);
+                if (pokerDiscardFlags[index]) cardEl.classList.add('discard-select');
+                if (highlights.includes(index)) cardEl.classList.add('highlight-player');
+
+                if (pokerRound <= 2 && showdownPhase === 0) {
+                    cardEl.onclick = (e) => {
+                        e.stopPropagation();
+                        togglePokerDiscard(index);
+                    };
+                }
+
+                const discardBadge = document.createElement('span');
+                discardBadge.className = `discard-badge ${pokerDiscardFlags[index] ? 'show' : ''}`;
+                discardBadge.innerText = '捨て';
+
+                wrapper.appendChild(cardEl);
+                wrapper.appendChild(discardBadge);
+                playerContainer.appendChild(wrapper);
+            });
+        }
+
+        function renderCpuCards(isOpen = false, highlights = []) {
+            const cpuContainer = document.getElementById('poker-cpu-cards');
+            cpuContainer.innerHTML = '';
+            pokerCpuHand.forEach((card, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'poker-card-wrapper';
+                if (!isOpen) {
+                    wrapper.innerHTML = `<div class="poker-card deck-back"></div>`;
+                } else {
+                    const cardEl = createCardElement(card);
+                    if (highlights.includes(index)) cardEl.classList.add('highlight-cpu');
+                    wrapper.appendChild(cardEl);
+                }
+                cpuContainer.appendChild(wrapper);
+            });
+        }
+
+        function updatePokerUI() {
+            document.getElementById('poker-deck-count').innerText = pokerDeck.length;
+
+            const playerCurrent = evaluatePokerHand(pokerPlayerHand);
+            document.getElementById('poker-live-hand').innerText = playerCurrent.name;
+
+            renderCpuCards(false);
+            renderPlayerCards([]);
+        }
+
+        /* ===================================================
+           神経衰弱ロジック（完全フリー・散乱配置アルゴリズム）
+           =================================================== */
+        let memoryCards = [];
+        let memoryFlippedCards = [];
+        let memoryPlayerPairs = 0;
+        let memoryCpuPairs = 0;
+        let isMemoryPlayerTurn = true;
+        let isMemoryBusy = false;
+        let memoryCpuMemory = {};
+
+        function initMemoryGame() {
+            closeModal();
+            const pairCount = parseInt(document.getElementById('memory-diff-select').value, 10);
+            const shuffledTypes = [...rawCardData].sort(() => Math.random() - 0.5).slice(0, pairCount);
+            const total = pairCount * 2;
+            
+            // テーブル上に自然に散乱する座標（X%, Y%）を計算
+            // 完全に重なりすぎないよう大まかなゾーンに分けつつ、大胆にランダム移動させる
+            const cols = total <= 12 ? 3 : (total <= 24 ? 4 : 5);
+            const rows = Math.ceil(total / cols);
+            const stepX = 80 / cols;
+            const stepY = 82 / rows;
+
+            const positions = [];
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    if (positions.length < total) {
+                        // 基本の基準点（10%〜90%の範囲内）
+                        const baseX = 10 + c * stepX + stepX * 0.5;
+                        const baseY = 9 + r * stepY + stepY * 0.5;
+                        // 最大 ±35% の位置ズレ（これで格子が完全に崩れる）
+                        const jx = (Math.random() * stepX * 0.7 - stepX * 0.35);
+                        const jy = (Math.random() * stepY * 0.7 - stepY * 0.35);
+                        // 大胆な角度（-45度〜+45度）
+                        const rot = (Math.random() * 90 - 45).toFixed(1);
+                        positions.push({ x: baseX + jx, y: baseY + jy, rot });
+                    }
+                }
+            }
+            // 配置スロットをシャッフル
+            positions.sort(() => Math.random() - 0.5);
+
+            memoryCards = [];
+            let posIdx = 0;
+            shuffledTypes.forEach((c, i) => {
+                const p1 = positions[posIdx++];
+                const p2 = positions[posIdx++];
+                memoryCards.push({ ...c, pairId: i, flipped: false, matched: false, x: p1.x, y: p1.y, rot: p1.rot, zIndex: posIdx });
+                memoryCards.push({ ...c, pairId: i, flipped: false, matched: false, x: p2.x, y: p2.y, rot: p2.rot, zIndex: posIdx });
+            });
+            memoryCards.sort(() => Math.random() - 0.5);
+
+            memoryFlippedCards = [];
+            memoryPlayerPairs = 0;
+            memoryCpuPairs = 0;
+            isMemoryPlayerTurn = true;
+            isMemoryBusy = false;
+            memoryCpuMemory = {};
+
+            updateMemoryUI();
+        }
+
+        function updateMemoryUI() {
+            document.getElementById('mem-player-pairs').innerText = memoryPlayerPairs;
+            document.getElementById('mem-cpu-pairs').innerText = memoryCpuPairs;
+            const remaining = memoryCards.filter(c => !c.matched).length / 2;
+            document.getElementById('mem-remain-pairs').innerText = remaining;
+
+            const turnEl = document.getElementById('mem-turn-indicator');
+            if (isMemoryPlayerTurn) {
+                turnEl.innerText = "あなたの番";
+                turnEl.className = "turn-indicator player-turn";
+            } else {
+                turnEl.innerText = "CPUの番";
+                turnEl.className = "turn-indicator cpu-turn";
+            }
+
+            const field = document.getElementById('memory-field');
+            field.innerHTML = '';
+
+            const total = memoryCards.length;
+            // 難易度（枚数）に応じてカードの基本サイズ（幅）を調節
+            let cardWidth = "clamp(58px, 18vw, 80px)";
+            if (total === 24) cardWidth = "clamp(50px, 14vw, 68px)";
+            if (total === 40) cardWidth = "clamp(42px, 10vw, 56px)";
+
+            memoryCards.forEach((card, index) => {
+                const cardDiv = document.createElement('div');
+                const diffClass = total >= 40 ? 'mem-card-diff-40' : (total >= 24 ? 'mem-card-diff-24' : '');
+                cardDiv.className = `mem-free-card ${diffClass} ${card.flipped ? 'flipped' : ''} ${card.matched ? 'matched' : ''}`;
+                cardDiv.style.left = `${card.x}%`;
+                cardDiv.style.top = `${card.y}%`;
+                cardDiv.style.width = cardWidth;
+                cardDiv.style.zIndex = card.flipped ? 40 : (card.zIndex || 1);
+                cardDiv.style.setProperty('--rot', `${card.rot}deg`);
+                
+                let cityClass = 'city-takata';
+                if (card.city === '大船渡市') cityClass = 'city-ofunato';
+                if (card.city === '住田町') cityClass = 'city-sumita';
+                if (card.city === '気仙全域' || card.city === '気仙地区') cityClass = 'city-kesen';
+
+                const areaClass = card.area === 'JOKER' ? 'card-area-badge area-joker' : 'card-area-badge';
+
+                // 文字数・枚数に応じたフォントサイズ自動微調整（枠外へのはみ出しを完全防止）
+                const nameLen = card.name.length;
+                let nameFontSize = "11px";
+                let nameLetterSpacing = "0px";
+                if (total === 12) {
+                    nameFontSize = nameLen >= 5 ? "9.5px" : (nameLen >= 3 ? "10.5px" : "12px");
+                } else if (total === 24) {
+                    nameFontSize = nameLen >= 5 ? "7.8px" : (nameLen >= 3 ? "8.8px" : "10px");
+                    if (nameLen >= 5) nameLetterSpacing = "-0.4px";
+                } else { // 40枚マスター
+                    nameFontSize = nameLen >= 5 ? "6.8px" : (nameLen >= 3 ? "7.8px" : "9px");
+                    if (nameLen >= 5) nameLetterSpacing = "-0.5px";
+                }
+
+                cardDiv.innerHTML = `
+                    <div class="mem-card-inner">
+                        <div class="mem-card-back"></div>
+                        <div class="mem-card-front">
+                            <div class="card-frame-header">
+                                <span class="card-city-badge ${cityClass}">${card.city.replace('市','').replace('町','')}</span>
+                                <span class="${areaClass}">${card.area}</span>
+                            </div>
+                            <div class="card-image-slot">
+                                ${card.image ? `<img src="${card.image}" alt="${card.name}">` : `<div class="card-placeholder-icon">${card.icon || '🌲'}</div>`}
+                            </div>
+                            <div class="card-frame-footer">
+                                <div class="card-main-name" style="font-size:${nameFontSize}; letter-spacing:${nameLetterSpacing};">${card.name}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if (!card.matched && !card.flipped) {
+                    cardDiv.onclick = () => onMemoryCardClick(index);
+                }
+
+                field.appendChild(cardDiv);
+            });
+        }
+
+        function onMemoryCardClick(index) {
+            if (!isMemoryPlayerTurn || isMemoryBusy) return;
+            flipMemoryCard(index);
+        }
+
+        function flipMemoryCard(index) {
+            const card = memoryCards[index];
+            if (card.flipped || card.matched) return;
+
+            card.flipped = true;
+            memoryFlippedCards.push(index);
+
+            if (!memoryCpuMemory[card.name]) memoryCpuMemory[card.name] = [];
+            if (!memoryCpuMemory[card.name].includes(index)) {
+                memoryCpuMemory[card.name].push(index);
+            }
+
+            updateMemoryUI();
+
+            if (memoryFlippedCards.length === 2) {
+                checkMemoryMatch();
+            }
+        }
+
+        function checkMemoryMatch() {
+            isMemoryBusy = true;
+            const [idx1, idx2] = memoryFlippedCards;
+            const card1 = memoryCards[idx1];
+            const card2 = memoryCards[idx2];
+
+            if (card1.name === card2.name) {
+                setTimeout(() => {
+                    card1.matched = true;
+                    card2.matched = true;
+                    memoryFlippedCards = [];
+                    delete memoryCpuMemory[card1.name];
+
+                    if (isMemoryPlayerTurn) {
+                        memoryPlayerPairs++;
+                    } else {
+                        memoryCpuPairs++;
+                    }
+
+                    updateMemoryUI();
+                    isMemoryBusy = false;
+
+                    if (memoryCards.every(c => c.matched)) {
+                        endMemoryGame();
+                    } else if (!isMemoryPlayerTurn) {
+                        setTimeout(cpuMemoryTurn, 800);
+                    }
+                }, 800);
+            } else {
+                setTimeout(() => {
+                    card1.flipped = false;
+                    card2.flipped = false;
+                    memoryFlippedCards = [];
+                    isMemoryPlayerTurn = !isMemoryPlayerTurn;
+                    updateMemoryUI();
+                    isMemoryBusy = false;
+
+                    if (!isMemoryPlayerTurn) {
+                        setTimeout(cpuMemoryTurn, 900);
+                    }
+                }, 1200);
+            }
+        }
+
+        function cpuMemoryTurn() {
+            if (isMemoryPlayerTurn || isMemoryBusy) return;
+
+            for (const name in memoryCpuMemory) {
+                const indices = memoryCpuMemory[name].filter(idx => !memoryCards[idx].matched);
+                if (indices.length === 2) {
+                    flipMemoryCard(indices[0]);
+                    setTimeout(() => flipMemoryCard(indices[1]), 800);
+                    return;
+                }
+            }
+
+            const unrevealed = memoryCards.map((c, i) => (!c.matched && !c.flipped ? i : null)).filter(i => i !== null);
+            if (unrevealed.length === 0) return;
+
+            const firstPick = unrevealed[Math.floor(Math.random() * unrevealed.length)];
+            flipMemoryCard(firstPick);
+
+            setTimeout(() => {
+                const firstCard = memoryCards[firstPick];
+                if (memoryCpuMemory[firstCard.name]) {
+                    const matchIdx = memoryCpuMemory[firstCard.name].find(idx => idx !== firstPick && !memoryCards[idx].matched);
+                    if (matchIdx !== undefined) {
+                        flipMemoryCard(matchIdx);
+                        return;
+                    }
+                }
+
+                const remainingUnrevealed = memoryCards.map((c, i) => (!c.matched && !c.flipped ? i : null)).filter(i => i !== null);
+                const secondPick = remainingUnrevealed[Math.floor(Math.random() * remainingUnrevealed.length)];
+                flipMemoryCard(secondPick);
+            }, 800);
+        }
+
+        function endMemoryGame() {
+            let title = "同点・引き分け！";
+            let desc = `あなた: ${memoryPlayerPairs}ペア / CPU: ${memoryCpuPairs}ペア`;
+            if (memoryPlayerPairs > memoryCpuPairs) {
+                title = "あなたの勝利！";
+            } else if (memoryPlayerPairs < memoryCpuPairs) {
+                title = "CPUの勝利...";
+            }
+            showResult(memoryPlayerPairs >= memoryCpuPairs, title, desc, () => initMemoryGame());
+        }
+
+        function showResult(isWin, title, desc, restartCallback) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-score').innerText = "";
+            document.getElementById('modal-restart-btn').onclick = () => {
+                closeModal();
+                if (restartCallback) restartCallback();
+            };
+            document.getElementById('result-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('result-modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

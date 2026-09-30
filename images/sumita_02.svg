@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="caveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="waterfallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <style>
+      .outline { stroke: #1e293b; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke: #1e293b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 鍾乳洞内部（神秘的な深い青紫と岩肌） -->
+  <rect width="400" height="300" fill="url(#caveGrad)"/>
+
+  <!-- 洞窟の岩壁と鍾乳石（つらら石・石筍） -->
+  <g class="outline" fill="#475569">
+    <!-- 天井からの鍾乳石（上部） -->
+    <polygon points="40,0 20,60 60,0"/>
+    <polygon points="90,0 80,85 105,0"/>
+    <polygon points="140,0 135,45 155,0"/>
+    <polygon points="260,0 250,55 275,0"/>
+    <polygon points="310,0 300,90 330,0"/>
+    <polygon points="360,0 350,60 380,0"/>
+
+    <!-- 洞窟の側壁 -->
+    <path d="M 0 0 L 70 80 L 30 160 L 80 230 L 0 300 Z"/>
+    <path d="M 400 0 L 330 80 L 370 160 L 320 230 L 400 300 Z"/>
+  </g>
+
+  <!-- 滝観洞の象徴「天の恵みの滝」（落差29mの神秘的な地底大滝） -->
+  <!-- 滝の光背（神秘的なライトアップ） -->
+  <ellipse cx="200" cy="140" rx="90" ry="120" fill="#0284c7" opacity="0.3" stroke="none"/>
+
+  <!-- 豪快に流れ落ちる滝の水流 -->
+  <g class="outline">
+    <path fill="url(#waterfallGrad)" d="
+      M 185 0 
+      Q 180 80 170 160 
+      L 155 240 
+      L 245 240 
+      L 230 160 
+      Q 220 80 215 0 
+      Z
+    "/>
+    <!-- 滝の流れライン（水しぶき） -->
+    <line x1="190" y1="20" x2="185" y2="180" class="thin-line" stroke="#ffffff"/>
+    <line x1="200" y1="10" x2="200" y2="210" class="thin-line" stroke="#ffffff"/>
+    <line x1="210" y1="20" x2="215" y2="180" class="thin-line" stroke="#ffffff"/>
+  </g>
+
+  <!-- 滝壺と舞い上がる白い水しぶき -->
+  <path class="outline" fill="#0284c7" d="M 50 240 Q 200 220 350 240 L 400 300 L 0 300 Z"/>
+  <ellipse cx="200" cy="245" rx="75" ry="25" fill="#38bdf8" class="outline"/>
+  <!-- 水しぶきの泡クラスタ -->
+  <g fill="#ffffff" class="thin-line">
+    <circle cx="170" cy="235" r="14"/>
+    <circle cx="200" cy="230" r="18"/>
+    <circle cx="230" cy="235" r="14"/>
+    <circle cx="150" cy="242" r="10"/>
+    <circle cx="250" cy="242" r="10"/>
+  </g>
+
+  <!-- 探検ヘルメット（ライト付き・鍾乳洞探検の象徴） -->
+  <g class="outline" transform="translate(45, 220)">
+    <!-- ヘルメット本体（黄色） -->
+    <path d="M 5 35 Q 25 5 45 35 Z" fill="#facc15"/>
+    <ellipse cx="25" cy="35" rx="24" ry="7" fill="#eab308"/>
+    <!-- 前面ヘッドランプ -->
+    <rect x="20" y="16" width="10" height="8" rx="2" fill="#38bdf8"/>
+    <!-- 光 -->
+    <polygon points="25,20 80,-10 90,30" fill="#fef08a" opacity="0.6" stroke="none"/>
+  </g>
+</svg>
